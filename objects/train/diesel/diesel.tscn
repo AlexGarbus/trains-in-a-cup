@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://clgvnnx2n0m6t"]
+
+[ext_resource type="PackedScene" uid="uid://dgcg014vk7ikd" path="res://objects/train/base.tscn" id="1_28lxm"]
+[ext_resource type="PackedScene" uid="uid://d3ar244cpgv8d" path="res://objects/train/diesel/diesel.glb" id="2_qudms"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_28lxm"]
+size = Vector3(4, 6, 15)
+
+[node name="Diesel" instance=ExtResource("1_28lxm")]
+
+[node name="CollisionShape3D" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0.5)
+shape = SubResource("BoxShape3D_28lxm")
+
+[node name="blockbench_export" parent="." index="2" instance=ExtResource("2_qudms")]

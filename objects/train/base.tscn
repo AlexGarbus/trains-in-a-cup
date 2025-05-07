@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://dgcg014vk7ikd"]
+
+[node name="Base" type="RigidBody3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+
+[node name="Joint" type="ConeTwistJoint3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, -7.75)
+node_a = NodePath("..")
