@@ -1,9 +1,15 @@
-[gd_scene load_steps=5 format=3 uid="uid://cg0gvfli3gkcy"]
+[gd_scene load_steps=11 format=3 uid="uid://cg0gvfli3gkcy"]
 
 [ext_resource type="Script" uid="uid://bgc5wv3f2lkxf" path="res://main/main.gd" id="1_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://c083x5lgy3q8n" path="res://user_interface/title/title.tscn" id="1_ig7tw"]
 [ext_resource type="Script" uid="uid://cmtatktv0o7t4" path="res://main/camera.gd" id="2_xwkvk"]
 [ext_resource type="Script" uid="uid://cc46m1klcw5ea" path="res://main/canvas.gd" id="3_c651c"]
+[ext_resource type="Script" uid="uid://icdp0caamr63" path="res://main/spawner.gd" id="5_0i4oc"]
+[ext_resource type="PackedScene" uid="uid://bnky8om8f4lf5" path="res://objects/train/steam/steam.tscn" id="6_bsumw"]
+[ext_resource type="PackedScene" uid="uid://clgvnnx2n0m6t" path="res://objects/train/diesel/diesel.tscn" id="7_fwcvl"]
+[ext_resource type="PackedScene" uid="uid://dj8jdq5wy150e" path="res://objects/train/box/box.tscn" id="8_na0o7"]
+[ext_resource type="PackedScene" uid="uid://w4v48vn0djtx" path="res://objects/train/tank/tank.tscn" id="9_73k8k"]
+[ext_resource type="PackedScene" uid="uid://blsmhbej5v6so" path="res://objects/train/caboose/caboose.tscn" id="10_5xyti"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_0xm2m")
@@ -25,7 +31,23 @@ script = ExtResource("3_c651c")
 
 [node name="Title" parent="CanvasLayer" instance=ExtResource("1_ig7tw")]
 
-[connection signal="play_state_started" from="." to="Camera3D" method="_on_main_play_state_started"]
-[connection signal="play_state_started" from="." to="CanvasLayer" method="_on_main_play_state_started"]
-[connection signal="title_state_started" from="." to="Camera3D" method="_on_main_title_state_started"]
+[node name="Spawner" type="Node" parent="."]
+script = ExtResource("5_0i4oc")
+front_trains = Array[PackedScene]([ExtResource("6_bsumw"), ExtResource("7_fwcvl")])
+middle_trains = Array[PackedScene]([ExtResource("8_na0o7"), ExtResource("9_73k8k")])
+rear_trains = Array[PackedScene]([ExtResource("10_5xyti")])
+
+[node name="LeftSpawn" type="Marker3D" parent="Spawner"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5, 0, 0)
+
+[node name="RightSpawn" type="Marker3D" parent="Spawner"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 5, 0, 0)
+
+[node name="SpawnTimer" type="Timer" parent="Spawner"]
+one_shot = true
+
+[connection signal="play_state_entered" from="." to="Camera3D" method="_on_main_play_state_entered"]
+[connection signal="play_state_entered" from="." to="CanvasLayer" method="_on_main_play_state_entered"]
+[connection signal="play_state_entered" from="." to="Spawner" method="_on_main_play_state_entered"]
 [connection signal="start_pressed" from="CanvasLayer/Title" to="." method="_on_title_start_pressed"]
+[connection signal="timeout" from="Spawner/SpawnTimer" to="Spawner" method="_on_spawn_timer_timeout"]

@@ -7,6 +7,7 @@
 size = Vector3(4, 6, 15)
 
 [node name="Diesel" instance=ExtResource("1_28lxm")]
+type = 1
 
 [node name="CollisionShape3D" parent="." index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0.5)

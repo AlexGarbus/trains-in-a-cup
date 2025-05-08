@@ -20,7 +20,7 @@ func interpolate_tween(from: Transform3D, to: Transform3D) -> void:
 	tween.tween_method(interpolate.bind(from, to), 0.0, 1.0, move_duration)
 
 
-func _on_main_play_state_started() -> void:
+func _on_main_play_state_entered() -> void:
 	interpolate_tween(title_marker.transform, play_marker.transform)
 
 

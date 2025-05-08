@@ -1,26 +1,26 @@
 extends Node
 
 
-signal title_state_started
-signal play_state_started
-signal end_state_started
+signal title_state_entered
+signal play_state_entered
+signal end_state_entered
 
-enum GameState {Title, Play, End}
+enum GameState {TITLE, PLAY, END}
 
-var game_state = GameState.Title: set = _set_game_state
+var game_state = GameState.TITLE: set = _set_game_state
 
 
 func _set_game_state(value: GameState) -> void:
 	game_state = value
 	match value:
-		GameState.Title:
-			title_state_started.emit()
-		GameState.Play:
-			play_state_started.emit()
-		GameState.End:
-			end_state_started.emit()
+		GameState.TITLE:
+			title_state_entered.emit()
+		GameState.PLAY:
+			play_state_entered.emit()
+		GameState.END:
+			end_state_entered.emit()
 
 
 func _on_title_start_pressed() -> void:
-	if game_state == GameState.Title:
-		game_state = GameState.Play
+	if game_state == GameState.TITLE:
+		game_state = GameState.PLAY
