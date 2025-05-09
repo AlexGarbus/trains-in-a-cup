@@ -45,16 +45,16 @@ middle_trains = Array[PackedScene]([ExtResource("8_na0o7"), ExtResource("9_73k8k
 rear_trains = Array[PackedScene]([ExtResource("10_5xyti")])
 
 [node name="LeftSpawn" type="Marker3D" parent="Spawner"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5, 0, 0)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -50, 0, 0)
 
 [node name="RightSpawn" type="Marker3D" parent="Spawner"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 5, 0, 0)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 50, 0, 0)
 
 [node name="SpawnTimer" type="Timer" parent="Spawner"]
 one_shot = true
 
-[connection signal="play_state_entered" from="." to="Camera3D" method="_on_main_play_state_entered"]
 [connection signal="play_state_entered" from="." to="CanvasLayer" method="_on_main_play_state_entered"]
+[connection signal="play_state_entered" from="." to="Camera3D" method="_on_main_play_state_entered"]
 [connection signal="play_state_entered" from="." to="Spawner" method="_on_main_play_state_entered"]
 [connection signal="start_pressed" from="CanvasLayer/Title" to="." method="_on_title_start_pressed"]
 [connection signal="timeout" from="Spawner/SpawnTimer" to="Spawner" method="_on_spawn_timer_timeout"]

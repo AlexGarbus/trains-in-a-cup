@@ -5,6 +5,7 @@
 [node name="Base" type="RigidBody3D"]
 freeze = true
 script = ExtResource("1_eox5q")
+drive_distance = 60.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 

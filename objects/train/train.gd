@@ -1,19 +1,29 @@
 extends RigidBody3D
 
 
-enum State {WAIT, DRAG, FALL, DESTROY}
+signal dropped
+
+enum State {DRIVE, WAIT, DRAG, FALL, DESTROY}
+
+@export var drive_distance := 10.0
+@export var drive_duration := 1.0
 
 @onready var joint := $Joint
 
-var state := State.WAIT
+var state := State.DRIVE
 
 var front_train: RigidBody3D
 var rear_train: RigidBody3D
 
 
+func _ready() -> void:
+	_enter_drive_state()
+
+
 func _unhandled_input(event: InputEvent) -> void:
 	if state == State.DRAG:
 		if event is InputEventMouseButton and event.is_released():
+			dropped.emit()
 			_enter_fall_state()
 		elif event is InputEventMouseMotion:
 			_move_to_mouse(event)
@@ -29,6 +39,18 @@ func disable_joint() -> void:
 	joint.node_a = ""
 	joint.node_b = ""
 	joint.process_mode = Node.PROCESS_MODE_DISABLED
+
+
+func _enter_drive_state() -> void:
+	state = State.DRIVE
+	var final_position := global_position + global_transform.basis.z * drive_distance
+	var tween := create_tween()
+	tween.tween_property(self, "position", final_position, drive_duration)
+	tween.tween_callback(_enter_wait_state)
+
+
+func _enter_wait_state() -> void:
+	state = State.WAIT
 
 
 func _enter_drag_state() -> void:
