@@ -15,11 +15,10 @@ extends Node
 
 
 func spawn_trains() -> void:
-	var length := randi_range(min_length, max_length) - 1
+	var length := randi_range(min_length, max_length)
 	var transform: Transform3D = spawn_points.pick_random().transform
-	var current_train: RigidBody3D
+	var current_train := _spawn_train(front_trains.pick_random(), transform)
 	var previous_train: RigidBody3D
-	current_train = _spawn_train(front_trains.pick_random(), transform)
 	for i in range(0, length):
 		transform = transform.translated_local(Vector3.FORWARD * spacing)
 		var train_scene: PackedScene = middle_trains.pick_random()
@@ -29,11 +28,7 @@ func spawn_trains() -> void:
 			else:
 				train_scene = rear_trains.pick_random()
 		previous_train = current_train
-		current_train = _spawn_train(
-			train_scene,
-			transform,
-			previous_train
-		)
+		current_train = _spawn_train(train_scene, transform, previous_train)
 	current_train.disable_joint()
 
 

@@ -2,7 +2,8 @@
 
 [ext_resource type="Script" uid="uid://bp6sw5n34exvl" path="res://objects/train/train.gd" id="1_eox5q"]
 
-[node name="Base" type="RigidBody3D" groups=["train"]]
+[node name="Base" type="RigidBody3D"]
+freeze = true
 script = ExtResource("1_eox5q")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
