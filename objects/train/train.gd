@@ -3,7 +3,7 @@ extends RigidBody3D
 
 signal dropped
 
-enum State {DRIVE, WAIT, DRAG, FALL, DESTROY}
+enum State {DRIVE, WAIT, DRAG, FALL}
 
 @export var drive_distance := 10.0
 @export var drive_duration := 1.0
@@ -27,6 +27,13 @@ func _unhandled_input(event: InputEvent) -> void:
 			_enter_fall_state()
 		elif event is InputEventMouseMotion:
 			_move_to_mouse(event)
+
+
+func set_freeze(value: bool) -> void:
+	if value:
+		_enter_wait_state()
+	else:
+		_enter_fall_state()
 
 
 func attach_train(other: RigidBody3D) -> void:

@@ -1,16 +1,20 @@
-[gd_scene load_steps=12 format=3 uid="uid://cg0gvfli3gkcy"]
+[gd_scene load_steps=15 format=3 uid="uid://cg0gvfli3gkcy"]
 
 [ext_resource type="Script" uid="uid://bgc5wv3f2lkxf" path="res://main/main.gd" id="1_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://c083x5lgy3q8n" path="res://user_interface/title/title.tscn" id="1_ig7tw"]
 [ext_resource type="Script" uid="uid://cmtatktv0o7t4" path="res://main/camera.gd" id="2_xwkvk"]
 [ext_resource type="Script" uid="uid://cc46m1klcw5ea" path="res://main/canvas.gd" id="3_c651c"]
+[ext_resource type="PackedScene" uid="uid://cm5yfxb40ary5" path="res://user_interface/end/end.tscn" id="4_na0o7"]
 [ext_resource type="Script" uid="uid://icdp0caamr63" path="res://main/spawner.gd" id="5_0i4oc"]
-[ext_resource type="PackedScene" uid="uid://l1cp0s48u0o0" path="res://objects/cup/cup.glb" id="5_bsumw"]
 [ext_resource type="PackedScene" uid="uid://bnky8om8f4lf5" path="res://objects/train/steam/steam.tscn" id="6_bsumw"]
+[ext_resource type="Script" uid="uid://d2nv8aq6ifvhe" path="res://main/boundary.gd" id="6_fwcvl"]
+[ext_resource type="PackedScene" uid="uid://btdg7pt5ben5u" path="res://objects/cup/cup.tscn" id="6_na0o7"]
 [ext_resource type="PackedScene" uid="uid://clgvnnx2n0m6t" path="res://objects/train/diesel/diesel.tscn" id="7_fwcvl"]
 [ext_resource type="PackedScene" uid="uid://dj8jdq5wy150e" path="res://objects/train/box/box.tscn" id="8_na0o7"]
 [ext_resource type="PackedScene" uid="uid://w4v48vn0djtx" path="res://objects/train/tank/tank.tscn" id="9_73k8k"]
 [ext_resource type="PackedScene" uid="uid://blsmhbej5v6so" path="res://objects/train/caboose/caboose.tscn" id="10_5xyti"]
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_bsumw"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_0xm2m")
@@ -20,23 +24,36 @@ script = ExtResource("3_c651c")
 
 [node name="Title" parent="CanvasLayer" instance=ExtResource("1_ig7tw")]
 
+[node name="End" parent="CanvasLayer" instance=ExtResource("4_na0o7")]
+visible = false
+
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.406737, 0.913545, 0, -0.913545, 0.406737, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 script = ExtResource("2_xwkvk")
 
 [node name="CameraMarker1" type="Marker3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 90)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -18, 90)
 
 [node name="CameraMarker2" type="Marker3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 0.406737, 0.913546, 0, -0.913546, 0.406737, 0, 41, 20)
+transform = Transform3D(1, 0, 0, 0, 0.406737, 0.913546, 0, -0.913546, 0.406737, 0, 46, 26)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.707107, -0.5, -0.5, -6.18172e-08, -0.707107, 0.707107, -0.707107, 0.5, 0.5, 0, 0, 0)
 
-[node name="Cup" parent="." instance=ExtResource("5_bsumw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -34, 0)
+[node name="Cup" parent="." instance=ExtResource("6_na0o7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -26, 0)
+
+[node name="Boundary" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -64, 0)
+monitorable = false
+script = ExtResource("6_fwcvl")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Boundary"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -8, 0)
+shape = SubResource("WorldBoundaryShape3D_bsumw")
+debug_color = Color(1, 0, 0, 0.419608)
 
 [node name="Spawner" type="Node" parent="."]
 script = ExtResource("5_0i4oc")
@@ -45,16 +62,25 @@ middle_trains = Array[PackedScene]([ExtResource("8_na0o7"), ExtResource("9_73k8k
 rear_trains = Array[PackedScene]([ExtResource("10_5xyti")])
 
 [node name="LeftSpawn" type="Marker3D" parent="Spawner"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -50, 0, 0)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -150, 0, -40)
 
 [node name="RightSpawn" type="Marker3D" parent="Spawner"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 50, 0, 0)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 150, 0, -40)
 
 [node name="SpawnTimer" type="Timer" parent="Spawner"]
 one_shot = true
 
+[connection signal="end_state_entered" from="." to="CanvasLayer" method="_on_main_end_state_entered"]
+[connection signal="end_state_entered" from="." to="Camera3D" method="_on_main_end_state_entered"]
+[connection signal="end_state_entered" from="." to="Cup" method="_on_main_end_state_entered"]
+[connection signal="end_state_entered" from="." to="Spawner" method="_on_main_end_state_entered"]
 [connection signal="play_state_entered" from="." to="CanvasLayer" method="_on_main_play_state_entered"]
 [connection signal="play_state_entered" from="." to="Camera3D" method="_on_main_play_state_entered"]
+[connection signal="play_state_entered" from="." to="Cup" method="_on_main_play_state_entered"]
 [connection signal="play_state_entered" from="." to="Spawner" method="_on_main_play_state_entered"]
+[connection signal="title_state_entered" from="." to="Camera3D" method="_on_main_title_state_entered"]
 [connection signal="start_pressed" from="CanvasLayer/Title" to="." method="_on_title_start_pressed"]
+[connection signal="start_pressed" from="CanvasLayer/End" to="." method="_on_end_start_pressed"]
+[connection signal="body_entered" from="Boundary" to="Boundary" method="_on_body_entered"]
+[connection signal="train_entered" from="Boundary" to="." method="_on_boundary_train_entered"]
 [connection signal="timeout" from="Spawner/SpawnTimer" to="Spawner" method="_on_spawn_timer_timeout"]

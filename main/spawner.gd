@@ -24,7 +24,7 @@ func spawn_trains() -> void:
 		transform = transform.translated_local(Vector3.FORWARD * spacing)
 		var scene: PackedScene = middle_trains.pick_random()
 		if i == length - 1:
-			if randi_range(0, 1) == 0:
+			if i > 1 and randi_range(0, 1) == 0:
 				break
 			else:
 				scene = rear_trains.pick_random()
@@ -59,3 +59,10 @@ func _on_spawn_timer_timeout() -> void:
 
 func _on_main_play_state_entered() -> void:
 	timer.start()
+
+
+func _on_main_end_state_entered() -> void:
+	for train in waiting_trains:
+		train.set_freeze(false)
+	waiting_trains.clear()
+	timer.stop()

@@ -24,5 +24,9 @@ func _on_main_play_state_entered() -> void:
 	interpolate_tween(title_marker.transform, play_marker.transform)
 
 
-func _on_main_title_state_started() -> void:
+func _on_main_title_state_entered() -> void:
+	interpolate_tween(play_marker.transform, title_marker.transform)
+
+
+func _on_main_end_state_entered() -> void:
 	interpolate_tween(play_marker.transform, title_marker.transform)

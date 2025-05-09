@@ -2,10 +2,14 @@
 
 [ext_resource type="Script" uid="uid://bp6sw5n34exvl" path="res://objects/train/train.gd" id="1_eox5q"]
 
-[node name="Base" type="RigidBody3D"]
+[node name="Base" type="RigidBody3D" groups=["trains"]]
+mass = 100.0
+gravity_scale = 5.0
+center_of_mass_mode = 1
 freeze = true
 script = ExtResource("1_eox5q")
-drive_distance = 60.0
+drive_distance = 160.0
+drive_duration = 2.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 
@@ -16,8 +20,12 @@ exclude_nodes_from_collision = false
 linear_limit_x/softness = 1.0
 linear_limit_y/softness = 1.0
 linear_limit_z/softness = 1.0
-angular_limit_x/enabled = false
-angular_limit_y/enabled = false
+angular_limit_x/upper_angle = 1.5708
+angular_limit_x/lower_angle = -1.5708
+angular_limit_x/softness = 16.0
+angular_limit_y/upper_angle = 1.5708
+angular_limit_y/lower_angle = -1.5708
+angular_limit_y/softness = 16.0
 angular_limit_z/softness = 16.0
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]

@@ -21,6 +21,23 @@ func _set_game_state(value: GameState) -> void:
 			end_state_entered.emit()
 
 
+func _delete_all_trains() -> void:
+	var trains := get_tree().get_nodes_in_group("trains")
+	for train in trains:
+		train.queue_free()
+
+
 func _on_title_start_pressed() -> void:
 	if game_state == GameState.TITLE:
 		game_state = GameState.PLAY
+
+
+func _on_end_start_pressed() -> void:
+	if game_state == GameState.END:
+		game_state = GameState.PLAY
+		_delete_all_trains()
+
+
+func _on_boundary_train_entered() -> void:
+	if game_state == GameState.PLAY:
+		game_state = GameState.END
