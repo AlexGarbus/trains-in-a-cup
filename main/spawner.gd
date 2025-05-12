@@ -13,6 +13,8 @@ extends Node
 @onready var spawn_points: Array[Node3D] = [$LeftSpawn, $RightSpawn]
 @onready var timer := $SpawnTimer
 
+var chains_spawned := 0
+var total_spawned := 0
 var waiting_trains: Array[RigidBody3D]
 
 
@@ -30,6 +32,7 @@ func spawn_trains() -> void:
 				scene = rear_trains.pick_random()
 		waiting_trains.append(_spawn_train(scene, transform, waiting_trains[i - 1]))
 	waiting_trains[-1].disable_joint()
+	chains_spawned += 1
 
 
 func _spawn_train(
@@ -43,7 +46,13 @@ func _spawn_train(
 	if previous:
 		previous.attach_train(train)
 	train.dropped.connect(_on_train_dropped)
+	total_spawned += 1
 	return train
+
+
+func _reset_counts() -> void:
+	chains_spawned = 0
+	total_spawned = 0
 
 
 func _on_train_dropped() -> void:
@@ -59,6 +68,7 @@ func _on_spawn_timer_timeout() -> void:
 
 func _on_main_play_state_entered() -> void:
 	timer.start()
+	_reset_counts()
 
 
 func _on_main_end_state_entered() -> void:

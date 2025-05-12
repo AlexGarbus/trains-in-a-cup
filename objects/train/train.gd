@@ -36,6 +36,10 @@ func set_freeze(value: bool) -> void:
 		_enter_fall_state()
 
 
+func destroy_all(include_self := false) -> void:
+	_call_on_all_trains("queue_free", include_self)
+
+
 func attach_train(other: RigidBody3D) -> void:
 	joint.node_b = other.get_path()
 	rear_train = other

@@ -38,6 +38,6 @@ func _on_end_start_pressed() -> void:
 		_delete_all_trains()
 
 
-func _on_boundary_train_entered() -> void:
+func _on_bounds_play_bound_entered() -> void:
 	if game_state == GameState.PLAY:
 		game_state = GameState.END

@@ -4,7 +4,7 @@
 
 [node name="Base" type="RigidBody3D" groups=["trains"]]
 mass = 100.0
-gravity_scale = 5.0
+gravity_scale = 10.0
 center_of_mass_mode = 1
 freeze = true
 script = ExtResource("1_eox5q")
