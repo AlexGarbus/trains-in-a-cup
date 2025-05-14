@@ -3,7 +3,7 @@ extends CanvasLayer
 
 @onready var title := $Title
 @onready var end := $End
-@onready var spawner := $"../Spawner"
+@onready var score := %Score
 
 
 func _on_main_play_state_entered() -> void:
@@ -12,9 +12,6 @@ func _on_main_play_state_entered() -> void:
 
 
 func _on_main_end_state_entered() -> void:
+	await get_tree().process_frame
 	end.show()
-	end.set_score(spawner.chains_spawned, get_tree().get_node_count_in_group("trains"))
-	# FIXME
-	# Need more accurate score tracking.
-	# Consider removing the count variables from spawner.gd
-	# or the destroy_all() function from train.gd if not needed.
+	end.set_score(score.chain_count, score.individual_count)

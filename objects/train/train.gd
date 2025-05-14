@@ -36,8 +36,17 @@ func set_freeze(value: bool) -> void:
 		_enter_fall_state()
 
 
-func destroy_all(include_self := false) -> void:
-	_call_on_all_trains("queue_free", include_self)
+func get_length() -> int:
+	var length := 1
+	var current := front_train
+	while current:
+		length += 1
+		current = current.front_train
+	current = rear_train
+	while current:
+		length += 1
+		current = current.rear_train
+	return length
 
 
 func attach_train(other: RigidBody3D) -> void:
@@ -78,14 +87,14 @@ func _enter_fall_state() -> void:
 func _call_on_all_trains(method: StringName, include_self := false) -> void:
 	if include_self:
 		call(method)
-	var first := front_train
-	var last := rear_train
-	while first:
-		first.call(method)
-		first = first.front_train
-	while last:
-		last.call(method)
-		last = last.rear_train
+	var current := front_train
+	while current:
+		current.call(method)
+		current = current.front_train
+	current = rear_train
+	while current:
+		current.call(method)
+		current = current.rear_train
 
 
 func _move_to_mouse(event: InputEventMouseMotion) -> void:
