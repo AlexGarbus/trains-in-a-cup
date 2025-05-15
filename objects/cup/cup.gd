@@ -10,6 +10,8 @@ var _flip_tween: Tween
 
 func play_flip() -> void:
 	var tween := create_tween()
+	tween.set_process_mode(Tween.TWEEN_PROCESS_PHYSICS)
+	tween.set_ease(Tween.EASE_OUT).set_trans(Tween.TransitionType.TRANS_BACK)
 	tween.tween_interval(flip_start_delay)
 	tween.tween_property(self, "rotation_degrees", Vector3(0, 0, 180), flip_duration)
 	tween.tween_interval(flip_middle_delay)
