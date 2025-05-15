@@ -7,8 +7,8 @@ var waiting_trains: Array[RigidBody3D]
 
 
 func reset_points() -> void:
-	individual_count = 0
 	chain_count = 0
+	individual_count = 0
 
 
 func _on_train_dropped() -> void:
