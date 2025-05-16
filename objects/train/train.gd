@@ -11,10 +11,8 @@ enum State {DRIVE, WAIT, DRAG, FALL}
 @onready var joint := $Joint
 
 var state := State.DRIVE
-
 var front_train: RigidBody3D
 var rear_train: RigidBody3D
-
 var _drag_position: Vector3
 
 
