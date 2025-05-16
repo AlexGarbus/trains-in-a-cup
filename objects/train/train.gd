@@ -15,9 +15,16 @@ var state := State.DRIVE
 var front_train: RigidBody3D
 var rear_train: RigidBody3D
 
+var _drag_position: Vector3
+
 
 func _ready() -> void:
 	_enter_drive_state()
+
+
+func _physics_process(delta: float) -> void:
+	if state == State.DRAG:
+		global_position = _drag_position
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -26,7 +33,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			dropped.emit()
 			_enter_fall_state()
 		elif event is InputEventMouseMotion:
-			_move_to_mouse(event)
+			_drag_position = _mouse_to_world_position(event.position)
 
 
 func set_freeze(value: bool) -> void:
@@ -73,8 +80,9 @@ func _enter_wait_state() -> void:
 	state = State.WAIT
 
 
-func _enter_drag_state() -> void:
+func _enter_drag_state(mouse_position := Vector2.ZERO) -> void:
 	state = State.DRAG
+	_drag_position = _mouse_to_world_position(mouse_position)
 	_call_on_all_trains("_enter_fall_state")
 	freeze = true
 
@@ -97,19 +105,19 @@ func _call_on_all_trains(method: StringName, include_self := false) -> void:
 		current = current.rear_train
 
 
-func _move_to_mouse(event: InputEventMouseMotion) -> void:
+func _mouse_to_world_position(mouse_position: Vector2) -> Vector3:
 	var camera := get_viewport().get_camera_3d()
-	var ray_origin := camera.project_ray_origin(event.position)
-	var ray_direction := camera.project_ray_normal(event.position)
+	var ray_origin := camera.project_ray_origin(mouse_position)
+	var ray_direction := camera.project_ray_normal(mouse_position)
 	var intersect_position: Vector3 = Plane(Vector3.UP).intersects_ray(
 		ray_origin,
 		ray_direction
 	)
-	global_position = intersect_position + Vector3.UP * global_position.y
+	return intersect_position + Vector3.UP * global_position.y
 
 
 func _on_input_event(camera: Node, event: InputEvent, event_position: Vector3,
 	normal: Vector3, shape_idx: int
 ) -> void:
 	if event is InputEventMouseButton and event.is_pressed() and state == State.WAIT:
-		_enter_drag_state()
+		_enter_drag_state(event.position)

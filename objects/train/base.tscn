@@ -7,25 +7,18 @@ mass = 100.0
 gravity_scale = 10.0
 center_of_mass_mode = 1
 freeze = true
+freeze_mode = 1
 script = ExtResource("1_eox5q")
 drive_distance = 160.0
 drive_duration = 2.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 
-[node name="Joint" type="Generic6DOFJoint3D" parent="."]
+[node name="Joint" type="ConeTwistJoint3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, -7.75)
 node_a = NodePath("..")
 exclude_nodes_from_collision = false
-linear_limit_x/softness = 1.0
-linear_limit_y/softness = 1.0
-linear_limit_z/softness = 1.0
-angular_limit_x/upper_angle = 1.5708
-angular_limit_x/lower_angle = -1.5708
-angular_limit_x/softness = 16.0
-angular_limit_y/upper_angle = 1.5708
-angular_limit_y/lower_angle = -1.5708
-angular_limit_y/softness = 16.0
-angular_limit_z/softness = 16.0
+swing_span = 1.5708
+twist_span = 0.785398
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]
