@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cg0gvfli3gkcy"]
+[gd_scene load_steps=19 format=3 uid="uid://cg0gvfli3gkcy"]
 
 [ext_resource type="Script" uid="uid://bgc5wv3f2lkxf" path="res://main/main.gd" id="1_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://c083x5lgy3q8n" path="res://user_interface/title/title.tscn" id="1_ig7tw"]
@@ -10,9 +10,11 @@
 [ext_resource type="PackedScene" uid="uid://btdg7pt5ben5u" path="res://objects/cup/cup.tscn" id="6_na0o7"]
 [ext_resource type="Script" uid="uid://cj7ad8n1s1i0b" path="res://main/bounds.gd" id="7_73k8k"]
 [ext_resource type="PackedScene" uid="uid://clgvnnx2n0m6t" path="res://objects/train/diesel/diesel.tscn" id="7_fwcvl"]
+[ext_resource type="PackedScene" uid="uid://bfdxweus14fua" path="res://objects/train/flat/flat.tscn" id="8_n3o0a"]
 [ext_resource type="PackedScene" uid="uid://dj8jdq5wy150e" path="res://objects/train/box/box.tscn" id="8_na0o7"]
 [ext_resource type="Script" uid="uid://03msrpsawifo" path="res://main/score.gd" id="9_5xyti"]
 [ext_resource type="PackedScene" uid="uid://w4v48vn0djtx" path="res://objects/train/tank/tank.tscn" id="9_73k8k"]
+[ext_resource type="PackedScene" uid="uid://b6iih2v1ghf2x" path="res://objects/train/hopper/hopper.tscn" id="9_s758e"]
 [ext_resource type="PackedScene" uid="uid://blsmhbej5v6so" path="res://objects/train/caboose/caboose.tscn" id="10_5xyti"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_bsumw"]
@@ -23,7 +25,6 @@ background_color = Color(0.0352941, 0.333333, 0.658824, 1)
 ambient_light_source = 1
 ambient_light_energy = 0.0
 reflected_light_source = 1
-adjustment_enabled = true
 
 [node name="Main" type="Node"]
 script = ExtResource("1_0xm2m")
@@ -52,7 +53,7 @@ debug_color = Color(1, 0, 0, 0.419608)
 [node name="Spawner" type="Node" parent="."]
 script = ExtResource("5_0i4oc")
 front_trains = Array[PackedScene]([ExtResource("6_bsumw"), ExtResource("7_fwcvl")])
-middle_trains = Array[PackedScene]([ExtResource("8_na0o7"), ExtResource("9_73k8k")])
+middle_trains = Array[PackedScene]([ExtResource("8_na0o7"), ExtResource("9_73k8k"), ExtResource("8_n3o0a"), ExtResource("9_s758e")])
 rear_trains = Array[PackedScene]([ExtResource("10_5xyti")])
 
 [node name="LeftSpawn" type="Marker3D" parent="Spawner"]
@@ -80,7 +81,7 @@ visible = false
 environment = SubResource("Environment_73k8k")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 0, 0)
+transform = Transform3D(0.965926, -0.224144, -0.12941, 0.258819, 0.836516, 0.482963, 0, -0.5, 0.866025, 0, 0, 0)
 sky_mode = 1
 
 [node name="Camera3D" type="Camera3D" parent="."]
