@@ -97,6 +97,7 @@ transform = Transform3D(1, 0, 0, 0, 0.406737, 0.913546, 0, -0.913546, 0.406737, 
 
 [node name="Cup" parent="." instance=ExtResource("6_na0o7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -26, 0)
+flip_duration = 2.0
 
 [connection signal="end_state_entered" from="." to="Bounds/PlayBound" method="_on_main_end_state_entered"]
 [connection signal="end_state_entered" from="." to="Spawner" method="_on_main_end_state_entered"]

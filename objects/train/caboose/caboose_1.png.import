@@ -2,19 +2,19 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ccr0x6qa7j2y8"
-path="res://.godot/imported/steam_0.png-3aa85a26d797047d6b96105a542ea7c4.ctex"
+uid="uid://dkyo8q1ahvm58"
+path="res://.godot/imported/caboose_1.png-7fd360ccea9d1ccd14b0fd98777e60d9.ctex"
 metadata={
 "vram_texture": false
 }
 generator_parameters={
-"md5": "63fcdc6b784d1812707de3117f45f99d"
+"md5": "3d849da4bee76526224670aec18488c2"
 }
 
 [deps]
 
-source_file="res://objects/train/steam/steam_0.png"
-dest_files=["res://.godot/imported/steam_0.png-3aa85a26d797047d6b96105a542ea7c4.ctex"]
+source_file="res://objects/train/caboose/caboose_1.png"
+dest_files=["res://.godot/imported/caboose_1.png-7fd360ccea9d1ccd14b0fd98777e60d9.ctex"]
 
 [params]
 

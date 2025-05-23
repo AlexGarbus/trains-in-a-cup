@@ -2,19 +2,19 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ccr0x6qa7j2y8"
-path="res://.godot/imported/steam_0.png-3aa85a26d797047d6b96105a542ea7c4.ctex"
+uid="uid://beypicsoogv3f"
+path="res://.godot/imported/diesel_2.png-2e9b43ccf73cf0ad573294e88e26f0f7.ctex"
 metadata={
 "vram_texture": false
 }
 generator_parameters={
-"md5": "63fcdc6b784d1812707de3117f45f99d"
+"md5": "3f34850c49c0708ccb97f3c0caff0283"
 }
 
 [deps]
 
-source_file="res://objects/train/steam/steam_0.png"
-dest_files=["res://.godot/imported/steam_0.png-3aa85a26d797047d6b96105a542ea7c4.ctex"]
+source_file="res://objects/train/diesel/diesel_2.png"
+dest_files=["res://.godot/imported/diesel_2.png-2e9b43ccf73cf0ad573294e88e26f0f7.ctex"]
 
 [params]
 

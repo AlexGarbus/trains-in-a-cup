@@ -2,19 +2,19 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ccr0x6qa7j2y8"
-path="res://.godot/imported/steam_0.png-3aa85a26d797047d6b96105a542ea7c4.ctex"
+uid="uid://bex3l4ixlgn82"
+path="res://.godot/imported/tank_1.png-3bd70dcaba26be7c819f21698c4bc469.ctex"
 metadata={
 "vram_texture": false
 }
 generator_parameters={
-"md5": "63fcdc6b784d1812707de3117f45f99d"
+"md5": "dc8a9b82c280539d4f34a150946cf7e5"
 }
 
 [deps]
 
-source_file="res://objects/train/steam/steam_0.png"
-dest_files=["res://.godot/imported/steam_0.png-3aa85a26d797047d6b96105a542ea7c4.ctex"]
+source_file="res://objects/train/tank/tank_1.png"
+dest_files=["res://.godot/imported/tank_1.png-3bd70dcaba26be7c819f21698c4bc469.ctex"]
 
 [params]
 
