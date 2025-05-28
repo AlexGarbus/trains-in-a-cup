@@ -15,6 +15,6 @@ shape = SubResource("BoxShape3D_hwddt")
 
 [node name="blockbench_export" parent="." index="2" instance=ExtResource("2_x2nkx")]
 
-[node name="Whistle" type="AudioStreamPlayer" parent="." index="3"]
+[node name="Whistle" type="AudioStreamPlayer" parent="Audio" index="1"]
 stream = ExtResource("3_x2nkx")
 autoplay = true
