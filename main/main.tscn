@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://cg0gvfli3gkcy"]
+[gd_scene load_steps=21 format=3 uid="uid://cg0gvfli3gkcy"]
 
 [ext_resource type="Script" uid="uid://bgc5wv3f2lkxf" path="res://main/main.gd" id="1_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://c083x5lgy3q8n" path="res://user_interface/title/title.tscn" id="1_ig7tw"]
@@ -19,11 +19,17 @@
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_bsumw"]
 
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_n3o0a"]
+
+[sub_resource type="Sky" id="Sky_s758e"]
+sky_material = SubResource("ProceduralSkyMaterial_n3o0a")
+
 [sub_resource type="Environment" id="Environment_73k8k"]
-background_mode = 1
-background_color = Color(0.0352941, 0.333333, 0.658824, 1)
-ambient_light_source = 1
-ambient_light_energy = 0.0
+background_mode = 2
+sky = SubResource("Sky_s758e")
+ambient_light_source = 2
+ambient_light_color = Color(1, 1, 1, 1)
+ambient_light_energy = 0.2
 reflected_light_source = 1
 
 [node name="Main" type="Node"]
@@ -33,20 +39,18 @@ script = ExtResource("1_0xm2m")
 script = ExtResource("7_73k8k")
 
 [node name="PlayBound" type="Area3D" parent="Bounds"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -64, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -96, 0)
 monitorable = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Bounds/PlayBound"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -8, 0)
 shape = SubResource("WorldBoundaryShape3D_bsumw")
 debug_color = Color(1, 0, 0, 0.419608)
 
 [node name="EndBound" type="Area3D" parent="Bounds"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -128, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -192, 0)
 monitorable = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Bounds/EndBound"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -72, 0)
 shape = SubResource("WorldBoundaryShape3D_bsumw")
 debug_color = Color(1, 0, 0, 0.419608)
 
@@ -81,7 +85,7 @@ visible = false
 environment = SubResource("Environment_73k8k")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.965926, -0.224144, -0.12941, 0.258819, 0.836516, 0.482963, 0, -0.5, 0.866025, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 0.258819, 0.965926, 0, -0.965926, 0.258819, 0, 0, 0)
 sky_mode = 1
 
 [node name="Camera3D" type="Camera3D" parent="."]
