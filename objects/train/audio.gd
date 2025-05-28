@@ -21,7 +21,7 @@ var max_impact_pitch := 1.1
 func _play_impact(speed: float) -> void:
 	if speed < min_impact_speed:
 		return
-	var volume = remap(
+	var volume := remap(
 		max(speed, max_impact_speed),
 		min_impact_speed,
 		max_impact_speed,

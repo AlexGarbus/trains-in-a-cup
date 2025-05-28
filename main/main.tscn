@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://cg0gvfli3gkcy"]
+[gd_scene load_steps=23 format=3 uid="uid://cg0gvfli3gkcy"]
 
 [ext_resource type="Script" uid="uid://bgc5wv3f2lkxf" path="res://main/main.gd" id="1_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://c083x5lgy3q8n" path="res://user_interface/title/title.tscn" id="1_ig7tw"]
@@ -16,6 +16,8 @@
 [ext_resource type="PackedScene" uid="uid://w4v48vn0djtx" path="res://objects/train/tank/tank.tscn" id="9_73k8k"]
 [ext_resource type="PackedScene" uid="uid://b6iih2v1ghf2x" path="res://objects/train/hopper/hopper.tscn" id="9_s758e"]
 [ext_resource type="PackedScene" uid="uid://blsmhbej5v6so" path="res://objects/train/caboose/caboose.tscn" id="10_5xyti"]
+[ext_resource type="Script" uid="uid://c457qc42xdeje" path="res://main/audio.gd" id="12_s758e"]
+[ext_resource type="AudioStream" uid="uid://ci1w0iteoyge1" path="res://main/buzzer.wav" id="13_4hmqs"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_bsumw"]
 
@@ -73,6 +75,12 @@ one_shot = true
 unique_name_in_owner = true
 script = ExtResource("9_5xyti")
 
+[node name="Audio" type="Node" parent="."]
+script = ExtResource("12_s758e")
+
+[node name="End" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("13_4hmqs")
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 script = ExtResource("3_c651c")
 
@@ -105,6 +113,7 @@ flip_duration = 2.0
 
 [connection signal="end_state_entered" from="." to="Bounds/PlayBound" method="_on_main_end_state_entered"]
 [connection signal="end_state_entered" from="." to="Spawner" method="_on_main_end_state_entered"]
+[connection signal="end_state_entered" from="." to="Audio" method="_on_main_end_state_entered"]
 [connection signal="end_state_entered" from="." to="CanvasLayer" method="_on_main_end_state_entered"]
 [connection signal="end_state_entered" from="." to="Camera3D" method="_on_main_end_state_entered"]
 [connection signal="end_state_entered" from="." to="Cup" method="_on_main_end_state_entered"]

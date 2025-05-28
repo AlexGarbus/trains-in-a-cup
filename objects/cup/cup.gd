@@ -5,6 +5,8 @@ extends Node3D
 @export var flip_start_delay := 1.0
 @export var flip_middle_delay := 2.0
 
+@onready var flip_sound := $FlipSound
+
 var _flip_tween: Tween
 
 
@@ -13,6 +15,7 @@ func play_flip() -> void:
 	tween.set_process_mode(Tween.TWEEN_PROCESS_PHYSICS)
 	tween.set_ease(Tween.EASE_OUT).set_trans(Tween.TransitionType.TRANS_BACK)
 	tween.tween_interval(flip_start_delay)
+	tween.tween_callback(flip_sound.play)
 	tween.tween_property(self, "rotation_degrees", Vector3(0, 0, 180), flip_duration)
 	tween.tween_interval(flip_middle_delay)
 	tween.tween_property(self, "rotation_degrees", Vector3.ZERO, flip_duration)
