@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://cm5yfxb40ary5"]
+[gd_scene load_steps=3 format=3 uid="uid://cm5yfxb40ary5"]
 
 [ext_resource type="Script" uid="uid://dqd7bkflsu82a" path="res://user_interface/end/end.gd" id="1_of3xt"]
+[ext_resource type="Theme" uid="uid://cfjmfbcfpkmfa" path="res://user_interface/theme.tres" id="1_r1yrj"]
 
 [node name="End" type="Control"]
 layout_mode = 3
@@ -9,30 +10,29 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_r1yrj")
 script = ExtResource("1_of3xt")
 
 [node name="HeaderLabel" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_bottom = 175.0
+offset_bottom = 82.0
 grow_horizontal = 2
-theme_override_font_sizes/font_size = 128
+theme_override_font_sizes/font_size = 64
 text = "Game over!"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="ScoreLabel" type="Label" parent="."]
 layout_mode = 1
-anchors_preset = 14
-anchor_top = 0.5
+anchors_preset = 10
 anchor_right = 1.0
-anchor_bottom = 0.5
-offset_top = -11.5
-offset_bottom = 11.5
+offset_top = 75.0
+offset_bottom = 117.0
 grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 48
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 32
 text = "You put %s trains with %s cars in a cup!"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -44,13 +44,13 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -41.5
-offset_top = -202.0
-offset_right = 41.5
-offset_bottom = -149.0
+offset_left = -78.5
+offset_top = -88.0
+offset_right = 78.5
+offset_bottom = -35.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_font_sizes/font_size = 32
-text = "Try again?"
+text = "Try again!"
 
 [connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]

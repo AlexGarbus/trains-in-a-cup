@@ -1,0 +1,66 @@
+[gd_resource type="Theme" load_steps=7 format=3 uid="uid://cfjmfbcfpkmfa"]
+
+[ext_resource type="FontFile" uid="uid://cnw5hwclw1nyb" path="res://user_interface/RacingSansOne-Regular.ttf" id="1_3ohsl"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3ohsl"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_64tpl"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_54y8l"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 45
+corner_radius_top_right = 45
+corner_radius_bottom_right = 45
+corner_radius_bottom_left = 45
+expand_margin_left = 11.0
+expand_margin_top = 3.0
+expand_margin_right = 11.0
+expand_margin_bottom = 3.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3ohsl"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 45
+corner_radius_top_right = 45
+corner_radius_bottom_right = 45
+corner_radius_bottom_left = 45
+expand_margin_left = 8.0
+expand_margin_right = 8.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pxoxi"]
+bg_color = Color(0.52549, 0.529412, 0.533333, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 45
+corner_radius_top_right = 45
+corner_radius_bottom_right = 45
+corner_radius_bottom_left = 45
+expand_margin_left = 8.0
+expand_margin_right = 8.0
+
+[resource]
+Button/colors/font_color = Color(0, 0, 0, 1)
+Button/colors/font_focus_color = Color(0, 0, 0, 1)
+Button/colors/font_hover_color = Color(0, 0, 0, 1)
+Button/colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+Button/colors/font_pressed_color = Color(0, 0, 0, 1)
+Button/fonts/font = ExtResource("1_3ohsl")
+Button/styles/disabled = SubResource("StyleBoxEmpty_3ohsl")
+Button/styles/focus = SubResource("StyleBoxEmpty_64tpl")
+Button/styles/hover = SubResource("StyleBoxFlat_54y8l")
+Button/styles/normal = SubResource("StyleBoxFlat_3ohsl")
+Button/styles/pressed = SubResource("StyleBoxFlat_pxoxi")
+Label/constants/outline_size = 15
+Label/fonts/font = ExtResource("1_3ohsl")
