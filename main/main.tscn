@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://cg0gvfli3gkcy"]
+[gd_scene load_steps=24 format=3 uid="uid://cg0gvfli3gkcy"]
 
 [ext_resource type="Script" uid="uid://bgc5wv3f2lkxf" path="res://main/main.gd" id="1_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://c083x5lgy3q8n" path="res://user_interface/title/title.tscn" id="1_ig7tw"]
@@ -18,6 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://blsmhbej5v6so" path="res://objects/train/caboose/caboose.tscn" id="10_5xyti"]
 [ext_resource type="Script" uid="uid://c457qc42xdeje" path="res://main/audio.gd" id="12_s758e"]
 [ext_resource type="AudioStream" uid="uid://ci1w0iteoyge1" path="res://main/buzzer.wav" id="13_4hmqs"]
+[ext_resource type="PackedScene" uid="uid://bo38xlvnah2jr" path="res://user_interface/options/options.tscn" id="17_piupu"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_bsumw"]
 
@@ -89,6 +90,10 @@ script = ExtResource("3_c651c")
 [node name="End" parent="CanvasLayer" instance=ExtResource("4_na0o7")]
 visible = false
 
+[node name="Options" parent="CanvasLayer" instance=ExtResource("17_piupu")]
+visible = false
+z_index = 1
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_73k8k")
 
@@ -131,5 +136,7 @@ flip_duration = 2.0
 [connection signal="body_entered" from="Bounds/EndBound" to="Bounds" method="_on_end_bound_body_entered"]
 [connection signal="spawned" from="Spawner" to="Score" method="_on_spawner_spawned"]
 [connection signal="timeout" from="Spawner/SpawnTimer" to="Spawner" method="_on_spawn_timer_timeout"]
+[connection signal="options_pressed" from="CanvasLayer/Title" to="CanvasLayer" method="_on_title_options_pressed"]
 [connection signal="start_pressed" from="CanvasLayer/Title" to="." method="_on_title_start_pressed"]
+[connection signal="options_pressed" from="CanvasLayer/End" to="CanvasLayer" method="_on_end_options_pressed"]
 [connection signal="start_pressed" from="CanvasLayer/End" to="." method="_on_end_start_pressed"]

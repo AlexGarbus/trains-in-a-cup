@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=7 format=3 uid="uid://cfjmfbcfpkmfa"]
+[gd_resource type="Theme" load_steps=15 format=3 uid="uid://cfjmfbcfpkmfa"]
 
 [ext_resource type="FontFile" uid="uid://cnw5hwclw1nyb" path="res://user_interface/RacingSansOne-Regular.ttf" id="1_3ohsl"]
 
@@ -50,6 +50,100 @@ corner_radius_bottom_left = 45
 expand_margin_left = 8.0
 expand_margin_right = 8.0
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_54y8l"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ctdt3"]
+bg_color = Color(0.52549, 0.529412, 0.533333, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 45
+corner_radius_top_right = 45
+corner_radius_bottom_right = 45
+corner_radius_bottom_left = 45
+expand_margin_left = 11.0
+expand_margin_top = 3.0
+expand_margin_right = 11.0
+expand_margin_bottom = 3.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3cii6"]
+bg_color = Color(0.592157, 0.607843, 0.615686, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 45
+corner_radius_top_right = 45
+corner_radius_bottom_right = 45
+corner_radius_bottom_left = 45
+expand_margin_left = 11.0
+expand_margin_top = 3.0
+expand_margin_right = 11.0
+expand_margin_bottom = 3.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8u122"]
+bg_color = Color(0.52549, 0.529412, 0.533333, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 45
+corner_radius_top_right = 45
+corner_radius_bottom_right = 45
+corner_radius_bottom_left = 45
+expand_margin_left = 8.0
+expand_margin_right = 8.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_orr63"]
+bg_color = Color(0.592157, 0.607843, 0.615686, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 45
+corner_radius_top_right = 45
+corner_radius_bottom_right = 45
+corner_radius_bottom_left = 45
+expand_margin_left = 8.0
+expand_margin_right = 8.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pxoxi"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_64tpl"]
+bg_color = Color(0.592157, 0.607843, 0.615686, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 45
+corner_radius_top_right = 45
+corner_radius_bottom_right = 45
+corner_radius_bottom_left = 45
+expand_margin_left = 11.0
+expand_margin_top = 3.0
+expand_margin_right = 11.0
+expand_margin_bottom = 3.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fmg31"]
+bg_color = Color(0.592157, 0.607843, 0.615686, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 45
+corner_radius_top_right = 45
+corner_radius_bottom_right = 45
+corner_radius_bottom_left = 45
+expand_margin_left = 8.0
+expand_margin_right = 8.0
+
 [resource]
 Button/colors/font_color = Color(0, 0, 0, 1)
 Button/colors/font_focus_color = Color(0, 0, 0, 1)
@@ -62,5 +156,17 @@ Button/styles/focus = SubResource("StyleBoxEmpty_64tpl")
 Button/styles/hover = SubResource("StyleBoxFlat_54y8l")
 Button/styles/normal = SubResource("StyleBoxFlat_3ohsl")
 Button/styles/pressed = SubResource("StyleBoxFlat_pxoxi")
+CheckButton/styles/focus = SubResource("StyleBoxEmpty_54y8l")
+CheckButton/styles/hover = SubResource("StyleBoxFlat_ctdt3")
+CheckButton/styles/hover_pressed = SubResource("StyleBoxFlat_3cii6")
+CheckButton/styles/normal = SubResource("StyleBoxFlat_8u122")
+CheckButton/styles/pressed = SubResource("StyleBoxFlat_orr63")
+HSeparator/styles/separator = SubResource("StyleBoxEmpty_pxoxi")
 Label/constants/outline_size = 15
 Label/fonts/font = ExtResource("1_3ohsl")
+OptionsButton/base_type = &"Button"
+OptionsButton/styles/hover = SubResource("StyleBoxFlat_64tpl")
+OptionsButton/styles/normal = SubResource("StyleBoxFlat_fmg31")
+OptionsLabel/base_type = &"Label"
+OptionsLabel/colors/font_color = Color(0, 0, 0, 1)
+OptionsLabel/constants/outline_size = 0

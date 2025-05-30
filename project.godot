@@ -23,6 +23,10 @@ buses/default_bus_layout=""
 
 window/stretch/mode="canvas_items"
 
+[gui]
+
+theme/custom="uid://cfjmfbcfpkmfa"
+
 [importer_defaults]
 
 texture={
