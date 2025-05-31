@@ -30,11 +30,29 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="FullscreenButton" type="CheckButton" parent="VBoxContainer"]
+[node name="ButtonContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="FullscreenButton" type="CheckButton" parent="VBoxContainer/ButtonContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 24
 text = "Fullscreen  "
+
+[node name="BackButton" type="Button" parent="VBoxContainer/ButtonContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_type_variation = &"OptionsButton"
+theme_override_font_sizes/font_size = 24
+text = "Go back!"
+
+[node name="QuitButton" type="Button" parent="VBoxContainer/ButtonContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"OptionsButton"
+theme_override_font_sizes/font_size = 24
+text = "Quit!"
 
 [node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
 layout_mode = 2
@@ -65,16 +83,6 @@ metal impact by u_ml52e3xzf7, buzzer by connieconnie12, & cartoon slide sound ef
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HSeparator3" type="HSeparator" parent="VBoxContainer"]
-layout_mode = 2
-theme_override_constants/separation = 64
-
-[node name="BackButton" type="Button" parent="VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-theme_type_variation = &"OptionsButton"
-theme_override_font_sizes/font_size = 24
-text = "Go back!"
-
-[connection signal="toggled" from="VBoxContainer/FullscreenButton" to="." method="_on_fullscreen_button_toggled"]
-[connection signal="pressed" from="VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="toggled" from="VBoxContainer/ButtonContainer/FullscreenButton" to="." method="_on_fullscreen_button_toggled"]
+[connection signal="pressed" from="VBoxContainer/ButtonContainer/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/ButtonContainer/QuitButton" to="." method="_on_quit_button_pressed"]

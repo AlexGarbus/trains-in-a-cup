@@ -161,6 +161,7 @@ CheckButton/styles/hover = SubResource("StyleBoxFlat_ctdt3")
 CheckButton/styles/hover_pressed = SubResource("StyleBoxFlat_3cii6")
 CheckButton/styles/normal = SubResource("StyleBoxFlat_8u122")
 CheckButton/styles/pressed = SubResource("StyleBoxFlat_orr63")
+HBoxContainer/constants/separation = 24
 HSeparator/styles/separator = SubResource("StyleBoxEmpty_pxoxi")
 Label/constants/outline_size = 15
 Label/fonts/font = ExtResource("1_3ohsl")
