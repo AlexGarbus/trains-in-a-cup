@@ -4,12 +4,12 @@
 [ext_resource type="PackedScene" uid="uid://cy6mjlkybi4yk" path="res://objects/train/hopper/hopper.glb" id="2_3csod"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_fnrxc"]
-size = Vector3(4, 6, 14)
+size = Vector3(4, 7.5, 14)
 
 [node name="Base" instance=ExtResource("1_4123c")]
 
 [node name="CollisionShape3D" parent="." index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.25, 0)
 shape = SubResource("BoxShape3D_fnrxc")
 
 [node name="blockbench_export" parent="." index="2" instance=ExtResource("2_3csod")]
