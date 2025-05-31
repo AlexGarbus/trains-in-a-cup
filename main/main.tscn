@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://cg0gvfli3gkcy"]
+[gd_scene load_steps=28 format=3 uid="uid://cg0gvfli3gkcy"]
 
 [ext_resource type="Script" uid="uid://bgc5wv3f2lkxf" path="res://main/main.gd" id="1_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://c083x5lgy3q8n" path="res://user_interface/title/title.tscn" id="1_ig7tw"]
@@ -17,8 +17,10 @@
 [ext_resource type="PackedScene" uid="uid://b6iih2v1ghf2x" path="res://objects/train/hopper/hopper.tscn" id="9_s758e"]
 [ext_resource type="PackedScene" uid="uid://blsmhbej5v6so" path="res://objects/train/caboose/caboose.tscn" id="10_5xyti"]
 [ext_resource type="Script" uid="uid://c457qc42xdeje" path="res://main/audio.gd" id="12_s758e"]
-[ext_resource type="AudioStream" uid="uid://ci1w0iteoyge1" path="res://main/buzzer.wav" id="13_4hmqs"]
+[ext_resource type="AudioStream" uid="uid://ci1w0iteoyge1" path="res://main/assets/buzzer.wav" id="13_4hmqs"]
 [ext_resource type="PackedScene" uid="uid://bo38xlvnah2jr" path="res://user_interface/options/options.tscn" id="17_piupu"]
+[ext_resource type="Texture2D" uid="uid://v7lc4u046kwd" path="res://main/assets/track.png" id="20_q0sk7"]
+[ext_resource type="Script" uid="uid://b274hjayhan7j" path="res://main/track.gd" id="21_vapsy"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_bsumw"]
 
@@ -34,6 +36,16 @@ ambient_light_source = 2
 ambient_light_color = Color(1, 1, 1, 1)
 ambient_light_energy = 0.2
 reflected_light_source = 1
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_vapsy"]
+size = Vector2(300, 6)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jofbb"]
+transparency = 1
+shading_mode = 0
+albedo_texture = ExtResource("20_q0sk7")
+uv1_scale = Vector3(50, 1, 1)
+texture_filter = 0
 
 [node name="Main" type="Node"]
 script = ExtResource("1_0xm2m")
@@ -64,10 +76,10 @@ middle_trains = Array[PackedScene]([ExtResource("8_na0o7"), ExtResource("9_73k8k
 rear_trains = Array[PackedScene]([ExtResource("10_5xyti")])
 
 [node name="LeftSpawn" type="Marker3D" parent="Spawner"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -150, 0, -40)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -125, 0, -40)
 
 [node name="RightSpawn" type="Marker3D" parent="Spawner"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 150, 0, -40)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 125, 0, -40)
 
 [node name="SpawnTimer" type="Timer" parent="Spawner"]
 one_shot = true
@@ -116,12 +128,20 @@ transform = Transform3D(1, 0, 0, 0, 0.406737, 0.913546, 0, -0.913546, 0.406737, 
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -26, 0)
 flip_duration = 2.0
 
+[node name="Track" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, -40)
+visible = false
+mesh = SubResource("PlaneMesh_vapsy")
+surface_material_override/0 = SubResource("StandardMaterial3D_jofbb")
+script = ExtResource("21_vapsy")
+
 [connection signal="end_state_entered" from="." to="Bounds/PlayBound" method="_on_main_end_state_entered"]
 [connection signal="end_state_entered" from="." to="Spawner" method="_on_main_end_state_entered"]
 [connection signal="end_state_entered" from="." to="Audio" method="_on_main_end_state_entered"]
 [connection signal="end_state_entered" from="." to="CanvasLayer" method="_on_main_end_state_entered"]
 [connection signal="end_state_entered" from="." to="Camera3D" method="_on_main_end_state_entered"]
 [connection signal="end_state_entered" from="." to="Cup" method="_on_main_end_state_entered"]
+[connection signal="end_state_entered" from="." to="Track" method="_on_main_end_state_entered"]
 [connection signal="play_state_entered" from="." to="Bounds" method="_on_main_play_state_entered"]
 [connection signal="play_state_entered" from="." to="Bounds/PlayBound" method="_on_main_play_state_entered"]
 [connection signal="play_state_entered" from="." to="Spawner" method="_on_main_play_state_entered"]
@@ -129,6 +149,7 @@ flip_duration = 2.0
 [connection signal="play_state_entered" from="." to="CanvasLayer" method="_on_main_play_state_entered"]
 [connection signal="play_state_entered" from="." to="Camera3D" method="_on_main_play_state_entered"]
 [connection signal="play_state_entered" from="." to="Cup" method="_on_main_play_state_entered"]
+[connection signal="play_state_entered" from="." to="Track" method="_on_main_play_state_entered"]
 [connection signal="title_state_entered" from="." to="Camera3D" method="_on_main_title_state_entered"]
 [connection signal="play_bound_entered" from="Bounds" to="." method="_on_bounds_play_bound_entered"]
 [connection signal="play_bound_entered" from="Bounds" to="Score" method="_on_bounds_play_bound_entered"]

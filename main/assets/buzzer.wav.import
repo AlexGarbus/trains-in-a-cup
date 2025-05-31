@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://ci1w0iteoyge1"
-path="res://.godot/imported/buzzer.wav-ee9b929e8d6695ec734f25076e88f9b1.sample"
+path="res://.godot/imported/buzzer.wav-dc40a18818eafda5da904f13a9ff3412.sample"
 
 [deps]
 
-source_file="res://main/buzzer.wav"
-dest_files=["res://.godot/imported/buzzer.wav-ee9b929e8d6695ec734f25076e88f9b1.sample"]
+source_file="res://main/assets/buzzer.wav"
+dest_files=["res://.godot/imported/buzzer.wav-dc40a18818eafda5da904f13a9ff3412.sample"]
 
 [params]
 
