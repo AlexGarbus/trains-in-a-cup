@@ -27,6 +27,7 @@ func _on_main_end_state_entered() -> void:
 
 
 func _on_main_play_state_entered() -> void:
+	flip_sound.stop()
 	if _flip_tween:
 		_flip_tween.kill()
 		rotation_degrees = Vector3.ZERO
