@@ -7,7 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://cm5yfxb40ary5" path="res://user_interface/end/end.tscn" id="4_na0o7"]
 [ext_resource type="Script" uid="uid://icdp0caamr63" path="res://main/spawner.gd" id="5_0i4oc"]
 [ext_resource type="PackedScene" uid="uid://bnky8om8f4lf5" path="res://objects/train/steam/steam.tscn" id="6_bsumw"]
-[ext_resource type="PackedScene" uid="uid://btdg7pt5ben5u" path="res://objects/cup/cup.tscn" id="6_na0o7"]
 [ext_resource type="Script" uid="uid://cj7ad8n1s1i0b" path="res://main/bounds.gd" id="7_73k8k"]
 [ext_resource type="PackedScene" uid="uid://clgvnnx2n0m6t" path="res://objects/train/diesel/diesel.tscn" id="7_fwcvl"]
 [ext_resource type="PackedScene" uid="uid://bfdxweus14fua" path="res://objects/train/flat/flat.tscn" id="8_n3o0a"]
@@ -19,6 +18,7 @@
 [ext_resource type="Script" uid="uid://c457qc42xdeje" path="res://main/audio.gd" id="12_s758e"]
 [ext_resource type="AudioStream" uid="uid://ci1w0iteoyge1" path="res://main/assets/buzzer.wav" id="13_4hmqs"]
 [ext_resource type="PackedScene" uid="uid://bo38xlvnah2jr" path="res://user_interface/options/options.tscn" id="17_piupu"]
+[ext_resource type="PackedScene" uid="uid://dbxg3mleno7hh" path="res://objects/cup/cup.tscn" id="19_vapsy"]
 [ext_resource type="Texture2D" uid="uid://v7lc4u046kwd" path="res://main/assets/track.png" id="20_q0sk7"]
 [ext_resource type="Script" uid="uid://b274hjayhan7j" path="res://main/track.gd" id="21_vapsy"]
 
@@ -124,9 +124,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -18, 90)
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 0.406737, 0.913546, 0, -0.913546, 0.406737, 0, 46, 26)
 
-[node name="Cup" parent="." instance=ExtResource("6_na0o7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -26, 0)
-flip_duration = 2.0
+[node name="Cup" parent="." instance=ExtResource("19_vapsy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -32, 0)
 
 [node name="Track" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, -40)
