@@ -21,11 +21,6 @@ func _ready() -> void:
 	_enter_drive_state()
 
 
-func _physics_process(delta: float) -> void:
-	if state == State.DRAG:
-		global_position = _drag_position
-
-
 func _unhandled_input(event: InputEvent) -> void:
 	if state == State.DRAG:
 		if event is InputEventMouseButton and event.is_released():
@@ -33,6 +28,11 @@ func _unhandled_input(event: InputEvent) -> void:
 			_enter_fall_state()
 		elif event is InputEventMouseMotion:
 			_drag_position = _mouse_to_world_position(event.position)
+
+
+func _integrate_forces(physics_state: PhysicsDirectBodyState3D) -> void:
+	if state == State.DRAG:
+		physics_state.transform.origin = _drag_position
 
 
 func set_freeze(value: bool) -> void:
