@@ -1,17 +1,17 @@
 extends Node
 
 
-@export_range(0.0, 100.0, 1.0, "or_greater", "hide_slider")
+@export_range(0.0, 100.0, 0.001, "or_greater", "hide_slider")
 var min_impact_speed := 100.0
-@export_range(0.0, 100.0, 1.0, "or_greater", "hide_slider")
+@export_range(0.0, 100.0, 0.001, "or_greater", "hide_slider")
 var max_impact_speed := 1000.0
-@export_range(-80.0, 24.0, 1.0)
+@export_range(-80.0, 24.0)
 var min_impact_volume := 0.0
-@export_range(-80.0, 24.0, 1.0)
+@export_range(-80.0, 24.0)
 var max_impact_volume := 16.0
-@export_range(0.0, 100.0, 1.0, "or_greater", "hide_slider")
+@export_range(0.0, 100.0, 0.001, "or_greater", "hide_slider")
 var min_impact_pitch := 0.9
-@export_range(0.0, 100.0, 1.0, "or_greater", "hide_slider")
+@export_range(0.0, 100.0, 0.001, "or_greater", "hide_slider")
 var max_impact_pitch := 1.1
 
 @onready var destroy_timer := $DestroyTimer

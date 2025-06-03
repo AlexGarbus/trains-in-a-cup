@@ -5,7 +5,7 @@ signal spawned(trains: Array[RigidBody3D])
 
 @export_range(2, 100, 1, "or_greater") var min_length := 2
 @export_range(3, 100, 1, "or_greater") var max_length := 6
-@export_range(0.0, 100.0, 1.0, "or_greater", "hide_slider") var spacing := 16.0
+@export_range(0.0, 100.0, 0.001, "or_greater", "hide_slider") var spacing := 16.0
 
 @export_group("Spawnable Scenes")
 @export var front_trains: Array[PackedScene]

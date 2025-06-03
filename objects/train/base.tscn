@@ -11,7 +11,6 @@ center_of_mass_mode = 1
 freeze = true
 freeze_mode = 1
 contact_monitor = true
-max_contacts_reported = 1
 script = ExtResource("1_eox5q")
 drive_distance = 135.0
 drive_duration = 1.65
@@ -29,7 +28,6 @@ twist_span = 0.785398
 script = ExtResource("2_n673f")
 min_impact_speed = 5.0
 max_impact_speed = 200.0
-max_impact_volume = 10.0
 
 [node name="DestroyTimer" type="Timer" parent="Audio"]
 wait_time = 5.0
