@@ -10,10 +10,10 @@ config_version=5
 
 [application]
 
-config/name="Trains in a Cup"
+config/name="Trains in a Cup!"
 run/main_scene="uid://cg0gvfli3gkcy"
 config/features=PackedStringArray("4.4", "Mobile")
-config/icon="res://icon.svg"
+config/icon="uid://t6a2a4hx6rr"
 
 [audio]
 
