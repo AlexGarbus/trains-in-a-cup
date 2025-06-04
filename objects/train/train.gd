@@ -2,7 +2,6 @@ extends RigidBody3D
 
 
 signal dropped
-signal fell
 
 enum State {DRIVE, WAIT, DRAG, FALL}
 
@@ -24,7 +23,7 @@ func _ready() -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if state == State.DRAG:
 		if event is InputEventMouseButton and event.is_released():
-			dropped.emit()
+			_call_on_all_trains("_drop", true)
 			_enter_fall_state()
 		elif event is InputEventMouseMotion:
 			_drag_position = _mouse_to_world_position(event.position)
@@ -89,7 +88,10 @@ func _enter_drag_state(mouse_position := Vector2.ZERO) -> void:
 func _enter_fall_state() -> void:
 	state = State.FALL
 	freeze = false
-	fell.emit()
+
+
+func _drop() -> void:
+	dropped.emit()
 
 
 func _call_on_all_trains(method: StringName, include_self := false) -> void:

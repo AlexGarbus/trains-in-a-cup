@@ -17,12 +17,14 @@ var max_impact_pitch := 1.1
 @onready var destroy_timer := $DestroyTimer
 @onready var impact := $Impact
 
+var _destroy_on_impact_finished := false
+
 
 func _play_impact(speed: float) -> void:
-	if speed < min_impact_speed:
+	if speed < min_impact_speed or speed > max_impact_speed:
 		return
 	var volume := remap(
-		max(speed, max_impact_speed),
+		speed,
 		min_impact_speed,
 		max_impact_speed,
 		min_impact_volume,
@@ -39,9 +41,17 @@ func _on_body_entered(body: Node) -> void:
 		_play_impact(rigidbody.linear_velocity.length())
 
 
-func _on_fell() -> void:
+func _on_dropped() -> void:
 	destroy_timer.start()
 
 
 func _on_destroy_timer_timeout() -> void:
-	queue_free()
+	if impact.playing:
+		_destroy_on_impact_finished = true
+	else:
+		queue_free()
+
+
+func _on_impact_finished() -> void:
+	if _destroy_on_impact_finished:
+		queue_free()

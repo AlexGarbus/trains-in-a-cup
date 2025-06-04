@@ -22,6 +22,7 @@ func spawn_trains() -> void:
 	var length := randi_range(min_length, max_length)
 	var transform: Transform3D = spawn_points.pick_random().transform
 	waiting_trains.append(_spawn_train(front_trains.pick_random(), transform))
+	waiting_trains[0].dropped.connect(_on_train_dropped)
 	for i in range(1, length):
 		transform = transform.translated_local(Vector3.FORWARD * spacing)
 		var scene: PackedScene = middle_trains.pick_random()
@@ -30,7 +31,7 @@ func spawn_trains() -> void:
 				break
 			else:
 				scene = rear_trains.pick_random()
-		waiting_trains.append(_spawn_train(scene, transform, waiting_trains[i - 1]))
+		waiting_trains.append(_spawn_train(scene, transform, waiting_trains[-1]))
 	waiting_trains[-1].disable_joint()
 	spawned.emit(waiting_trains)
 
@@ -45,13 +46,11 @@ func _spawn_train(
 	$"..".add_child(train)
 	if previous:
 		previous.attach_train(train)
-	train.dropped.connect(_on_train_dropped)
 	return train
 
 
 func _on_train_dropped() -> void:
-	for train in waiting_trains:
-		train.dropped.disconnect(_on_train_dropped)
+	waiting_trains[0].dropped.disconnect(_on_train_dropped)
 	waiting_trains.clear()
 	timer.start()
 
