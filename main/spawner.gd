@@ -3,6 +3,7 @@ extends Node
 
 signal spawned(trains: Array[RigidBody3D])
 
+@export var spawn_path: NodePath
 @export_range(2, 100, 1, "or_greater") var min_length := 2
 @export_range(3, 100, 1, "or_greater") var max_length := 6
 @export_range(0.0, 100.0, 0.001, "or_greater", "hide_slider") var spacing := 16.0
@@ -43,7 +44,7 @@ func _spawn_train(
 ) -> RigidBody3D:
 	var train: RigidBody3D = scene.instantiate()
 	train.transform = transform
-	$"..".add_child(train)
+	get_node(spawn_path).add_child(train)
 	if previous:
 		previous.attach_train(train)
 	return train

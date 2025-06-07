@@ -71,6 +71,7 @@ debug_color = Color(1, 0, 0, 0.419608)
 
 [node name="Spawner" type="Node" parent="."]
 script = ExtResource("5_0i4oc")
+spawn_path = NodePath("../Trains")
 front_trains = Array[PackedScene]([ExtResource("6_bsumw"), ExtResource("7_fwcvl")])
 middle_trains = Array[PackedScene]([ExtResource("8_na0o7"), ExtResource("9_73k8k"), ExtResource("8_n3o0a"), ExtResource("9_s758e")])
 rear_trains = Array[PackedScene]([ExtResource("10_5xyti")])
@@ -133,6 +134,8 @@ visible = false
 mesh = SubResource("PlaneMesh_vapsy")
 surface_material_override/0 = SubResource("StandardMaterial3D_jofbb")
 script = ExtResource("21_vapsy")
+
+[node name="Trains" type="Node3D" parent="."]
 
 [connection signal="end_state_entered" from="." to="Bounds/PlayBound" method="_on_main_end_state_entered"]
 [connection signal="end_state_entered" from="." to="Spawner" method="_on_main_end_state_entered"]
