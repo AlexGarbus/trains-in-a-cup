@@ -1,7 +1,7 @@
 extends Node
 
 
-signal spawned(trains: Array[RigidBody3D])
+signal spawned(trains: Array[TrainBody])
 
 @export var spawn_path: NodePath
 @export_range(2, 100, 1, "or_greater") var min_length := 2
@@ -16,7 +16,7 @@ signal spawned(trains: Array[RigidBody3D])
 @onready var spawn_points: Array[Node3D] = [$LeftSpawn, $RightSpawn]
 @onready var timer := $SpawnTimer
 
-var waiting_trains: Array[RigidBody3D]
+var waiting_trains: Array[TrainBody]
 
 
 func spawn_trains() -> void:
@@ -33,20 +33,19 @@ func spawn_trains() -> void:
 			else:
 				scene = rear_trains.pick_random()
 		waiting_trains.append(_spawn_train(scene, transform, waiting_trains[-1]))
-	waiting_trains[-1].disable_joint()
 	spawned.emit(waiting_trains)
 
 
 func _spawn_train(
 	scene: PackedScene,
 	transform: Transform3D,
-	previous: RigidBody3D = null
-) -> RigidBody3D:
-	var train: RigidBody3D = scene.instantiate()
+	previous: TrainBody = null
+) -> TrainBody:
+	var train: TrainBody = scene.instantiate()
 	train.transform = transform
 	get_node(spawn_path).add_child(train)
 	if previous:
-		previous.attach_train(train)
+		previous.attach_rear(train)
 	return train
 
 

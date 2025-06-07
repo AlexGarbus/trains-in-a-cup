@@ -3,7 +3,7 @@ extends Node
 
 var chain_count := 0
 var individual_count := 0
-var waiting_trains: Array[RigidBody3D]
+var waiting_trains: Array[TrainBody]
 
 
 func reset_points() -> void:
@@ -19,13 +19,13 @@ func _on_train_dropped() -> void:
 	chain_count += 1
 
 
-func _on_spawner_spawned(trains: Array[RigidBody3D]) -> void:
+func _on_spawner_spawned(trains: Array[TrainBody]) -> void:
 	waiting_trains = trains.duplicate()
 	for train in trains:
 		train.connect("dropped", _on_train_dropped)
 
 
-func _on_bounds_play_bound_entered(train: RigidBody3D) -> void:
+func _on_bounds_play_bound_entered(train: TrainBody) -> void:
 	waiting_trains.clear()
 	chain_count -= 1
 	individual_count -= train.get_length()

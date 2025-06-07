@@ -1,0 +1,37 @@
+[remap]
+
+importer="texture"
+type="CompressedTexture2D"
+uid="uid://dkyo8q1ahvm58"
+path="res://.godot/imported/caboose_1.png-3f6bc745f77326cccbc3e56868b699b8.ctex"
+metadata={
+"vram_texture": false
+}
+generator_parameters={
+"md5": "0b29daaa76694955c39bbdf0770d1436"
+}
+
+[deps]
+
+source_file="res://objects/train_body/caboose/caboose_1.png"
+dest_files=["res://.godot/imported/caboose_1.png-3f6bc745f77326cccbc3e56868b699b8.ctex"]
+
+[params]
+
+compress/mode=3
+compress/high_quality=false
+compress/lossy_quality=0.7
+compress/hdr_compression=1
+compress/normal_map=0
+compress/channel_pack=0
+mipmaps/generate=true
+mipmaps/limit=-1
+roughness/mode=0
+roughness/src_normal=""
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/normal_map_invert_y=false
+process/hdr_as_srgb=false
+process/hdr_clamp_exposure=false
+process/size_limit=0
+detect_3d/compress_to=0

@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://yk06amhw8mic"]
+
+[node name="Joint" type="ConeTwistJoint3D"]
+exclude_nodes_from_collision = false
+twist_span = 0.785398
