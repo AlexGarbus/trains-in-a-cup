@@ -1,5 +1,9 @@
-[gd_scene format=3 uid="uid://yk06amhw8mic"]
+[gd_scene load_steps=2 format=3 uid="uid://yk06amhw8mic"]
+
+[ext_resource type="Script" uid="uid://bjmwwhk2cmlhl" path="res://objects/train_joint/train_joint.gd" id="1_ftf5f"]
 
 [node name="Joint" type="ConeTwistJoint3D"]
 exclude_nodes_from_collision = false
+swing_span = 1.5708
 twist_span = 0.785398
+script = ExtResource("1_ftf5f")

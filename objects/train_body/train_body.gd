@@ -92,12 +92,14 @@ func _drop() -> void:
 func _spawn_joint() -> void:
 	if not rear_train:
 		return
-	var joint_scene: Joint3D = joint.instantiate()
+	var joint_scene: TrainJoint = joint.instantiate()
 	joint_scene.transform = transform
 	joint_scene.position = to_global(joint_offset)
 	$"..".add_child(joint_scene)
 	joint_scene.node_a = joint_scene.get_path_to(self)
 	joint_scene.node_b = joint_scene.get_path_to(rear_train)
+	joint_scene.destroy_on_train_exiting(self)
+	joint_scene.destroy_on_train_exiting(rear_train)
 
 
 func _call_on_all_trains(method: StringName, include_self := false) -> void:
