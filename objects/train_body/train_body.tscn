@@ -16,6 +16,7 @@ max_contacts_reported = 1
 script = ExtResource("1_eox5q")
 drive_distance = 135.0
 drive_duration = 1.65
+drag_speed = 300.0
 joint = ExtResource("2_vcua5")
 joint_offset = Vector3(0, 2.5, -7.75)
 
