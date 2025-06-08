@@ -30,6 +30,10 @@ max_impact_volume = 12.0
 wait_time = 2.0
 one_shot = true
 
+[node name="MinPlaybackTimer" type="Timer" parent="Audio"]
+wait_time = 0.1
+one_shot = true
+
 [node name="Impact" type="AudioStreamPlayer" parent="Audio"]
 stream = ExtResource("2_t0e4j")
 
