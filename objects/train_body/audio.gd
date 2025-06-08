@@ -2,9 +2,9 @@ extends Node
 
 
 @export_range(0.0, 100.0, 0.001, "or_greater", "hide_slider")
-var min_impact_speed := 100.0
+var min_body_speed := 5.0
 @export_range(0.0, 100.0, 0.001, "or_greater", "hide_slider")
-var max_impact_speed := 1000.0
+var max_body_speed := 200.0	
 @export_range(-80.0, 24.0)
 var min_impact_volume := 0.0
 @export_range(-80.0, 24.0)
@@ -14,19 +14,21 @@ var min_impact_pitch := 0.9
 @export_range(0.0, 100.0, 0.001, "or_greater", "hide_slider")
 var max_impact_pitch := 1.1
 
+
+@onready var train := $".."
 @onready var destroy_timer := $DestroyTimer
 @onready var impact := $Impact
 
 var _destroy_on_impact_finished := false
 
 
-func _play_impact(speed: float) -> void:
-	if speed < min_impact_speed or speed > max_impact_speed:
+func _play_impact(body_speed: float) -> void:
+	if body_speed < min_body_speed or body_speed > max_body_speed:
 		return
 	var volume := remap(
-		speed,
-		min_impact_speed,
-		max_impact_speed,
+		body_speed,
+		min_body_speed,
+		max_body_speed,
 		min_impact_volume,
 		max_impact_volume
 	)
@@ -36,9 +38,9 @@ func _play_impact(speed: float) -> void:
 
 
 func _on_body_entered(body: Node) -> void:
-	var rigidbody := body as RigidBody3D
-	if rigidbody:
-		_play_impact(rigidbody.linear_velocity.length())
+	var rigid_body: RigidBody3D = body if body is RigidBody3D else train
+	if not rigid_body == train.front_train:
+		_play_impact(rigid_body.linear_velocity.length())
 
 
 func _on_dropped() -> void:

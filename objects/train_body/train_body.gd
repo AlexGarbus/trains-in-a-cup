@@ -8,6 +8,7 @@ enum State {DRIVE, WAIT, DRAG, FALL}
 
 @export var drive_distance := 10.0
 @export var drive_duration := 1.0
+@export var drag_speed := 100.0
 @export var joint: PackedScene
 @export var joint_offset: Vector3
 
@@ -30,9 +31,13 @@ func _unhandled_input(event: InputEvent) -> void:
 			_drag_position = _mouse_to_world_position(event.position)
 
 
-func _integrate_forces(physics_state: PhysicsDirectBodyState3D) -> void:
+func _integrate_forces(body_state: PhysicsDirectBodyState3D) -> void:
 	if state == State.DRAG:
-		physics_state.transform.origin = _drag_position
+		var position := body_state.transform.origin.move_toward(
+			_drag_position,
+			drag_speed * body_state.step
+		)
+		body_state.transform.origin = position
 
 
 func set_freeze(value: bool) -> void:

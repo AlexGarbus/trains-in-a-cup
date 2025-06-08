@@ -1,11 +1,13 @@
 extends Control
 
 
+@onready var fullscreen_button := %FullscreenButton
 @onready var quit_button := %QuitButton
 
 
 func _ready() -> void:
 	if OS.get_name() == "Web":
+		fullscreen_button.hide()
 		quit_button.hide()
 
 
