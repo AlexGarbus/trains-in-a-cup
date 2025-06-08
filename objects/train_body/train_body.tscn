@@ -23,8 +23,6 @@ joint_offset = Vector3(0, 2.5, -7.75)
 
 [node name="Audio" type="Node" parent="."]
 script = ExtResource("2_n673f")
-min_impact_speed = 5.0
-max_impact_speed = 200.0
 max_impact_volume = 12.0
 
 [node name="DestroyTimer" type="Timer" parent="Audio"]
