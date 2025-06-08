@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://cg0gvfli3gkcy"]
+[gd_scene load_steps=28 format=3 uid="uid://cg0gvfli3gkcy"]
 
 [ext_resource type="Script" uid="uid://bgc5wv3f2lkxf" path="res://main/main.gd" id="1_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://c083x5lgy3q8n" path="res://user_interface/title/title.tscn" id="1_ig7tw"]
@@ -6,25 +6,46 @@
 [ext_resource type="Script" uid="uid://cc46m1klcw5ea" path="res://main/canvas.gd" id="3_c651c"]
 [ext_resource type="PackedScene" uid="uid://cm5yfxb40ary5" path="res://user_interface/end/end.tscn" id="4_na0o7"]
 [ext_resource type="Script" uid="uid://icdp0caamr63" path="res://main/spawner.gd" id="5_0i4oc"]
-[ext_resource type="PackedScene" uid="uid://bnky8om8f4lf5" path="res://objects/train/steam/steam.tscn" id="6_bsumw"]
-[ext_resource type="PackedScene" uid="uid://btdg7pt5ben5u" path="res://objects/cup/cup.tscn" id="6_na0o7"]
+[ext_resource type="PackedScene" uid="uid://bnky8om8f4lf5" path="res://objects/train_body/steam/steam.tscn" id="6_bsumw"]
 [ext_resource type="Script" uid="uid://cj7ad8n1s1i0b" path="res://main/bounds.gd" id="7_73k8k"]
-[ext_resource type="PackedScene" uid="uid://clgvnnx2n0m6t" path="res://objects/train/diesel/diesel.tscn" id="7_fwcvl"]
-[ext_resource type="PackedScene" uid="uid://bfdxweus14fua" path="res://objects/train/flat/flat.tscn" id="8_n3o0a"]
-[ext_resource type="PackedScene" uid="uid://dj8jdq5wy150e" path="res://objects/train/box/box.tscn" id="8_na0o7"]
+[ext_resource type="PackedScene" uid="uid://clgvnnx2n0m6t" path="res://objects/train_body/diesel/diesel.tscn" id="7_fwcvl"]
+[ext_resource type="PackedScene" uid="uid://bfdxweus14fua" path="res://objects/train_body/flat/flat.tscn" id="8_n3o0a"]
+[ext_resource type="PackedScene" uid="uid://dj8jdq5wy150e" path="res://objects/train_body/box/box.tscn" id="8_na0o7"]
 [ext_resource type="Script" uid="uid://03msrpsawifo" path="res://main/score.gd" id="9_5xyti"]
-[ext_resource type="PackedScene" uid="uid://w4v48vn0djtx" path="res://objects/train/tank/tank.tscn" id="9_73k8k"]
-[ext_resource type="PackedScene" uid="uid://b6iih2v1ghf2x" path="res://objects/train/hopper/hopper.tscn" id="9_s758e"]
-[ext_resource type="PackedScene" uid="uid://blsmhbej5v6so" path="res://objects/train/caboose/caboose.tscn" id="10_5xyti"]
+[ext_resource type="PackedScene" uid="uid://w4v48vn0djtx" path="res://objects/train_body/tank/tank.tscn" id="9_73k8k"]
+[ext_resource type="PackedScene" uid="uid://b6iih2v1ghf2x" path="res://objects/train_body/hopper/hopper.tscn" id="9_s758e"]
+[ext_resource type="PackedScene" uid="uid://blsmhbej5v6so" path="res://objects/train_body/caboose/caboose.tscn" id="10_5xyti"]
+[ext_resource type="Script" uid="uid://c457qc42xdeje" path="res://main/audio.gd" id="12_s758e"]
+[ext_resource type="AudioStream" uid="uid://ci1w0iteoyge1" path="res://main/assets/buzzer.wav" id="13_4hmqs"]
+[ext_resource type="PackedScene" uid="uid://bo38xlvnah2jr" path="res://user_interface/options/options.tscn" id="17_piupu"]
+[ext_resource type="PackedScene" uid="uid://dbxg3mleno7hh" path="res://objects/cup/cup.tscn" id="19_vapsy"]
+[ext_resource type="Texture2D" uid="uid://v7lc4u046kwd" path="res://main/assets/track.png" id="20_q0sk7"]
+[ext_resource type="Script" uid="uid://b274hjayhan7j" path="res://main/track.gd" id="21_vapsy"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_bsumw"]
 
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_n3o0a"]
+
+[sub_resource type="Sky" id="Sky_s758e"]
+sky_material = SubResource("ProceduralSkyMaterial_n3o0a")
+
 [sub_resource type="Environment" id="Environment_73k8k"]
-background_mode = 1
-background_color = Color(0.0352941, 0.333333, 0.658824, 1)
-ambient_light_source = 1
-ambient_light_energy = 0.0
+background_mode = 2
+sky = SubResource("Sky_s758e")
+ambient_light_source = 2
+ambient_light_color = Color(1, 1, 1, 1)
+ambient_light_energy = 0.2
 reflected_light_source = 1
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_vapsy"]
+size = Vector2(300, 6)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jofbb"]
+transparency = 1
+shading_mode = 0
+albedo_texture = ExtResource("20_q0sk7")
+uv1_scale = Vector3(50, 1, 1)
+texture_filter = 0
 
 [node name="Main" type="Node"]
 script = ExtResource("1_0xm2m")
@@ -33,34 +54,33 @@ script = ExtResource("1_0xm2m")
 script = ExtResource("7_73k8k")
 
 [node name="PlayBound" type="Area3D" parent="Bounds"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -64, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -96, 0)
 monitorable = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Bounds/PlayBound"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -8, 0)
 shape = SubResource("WorldBoundaryShape3D_bsumw")
 debug_color = Color(1, 0, 0, 0.419608)
 
 [node name="EndBound" type="Area3D" parent="Bounds"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -128, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -192, 0)
 monitorable = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Bounds/EndBound"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -72, 0)
 shape = SubResource("WorldBoundaryShape3D_bsumw")
 debug_color = Color(1, 0, 0, 0.419608)
 
 [node name="Spawner" type="Node" parent="."]
 script = ExtResource("5_0i4oc")
+spawn_path = NodePath("../Trains")
 front_trains = Array[PackedScene]([ExtResource("6_bsumw"), ExtResource("7_fwcvl")])
 middle_trains = Array[PackedScene]([ExtResource("8_na0o7"), ExtResource("9_73k8k"), ExtResource("8_n3o0a"), ExtResource("9_s758e")])
 rear_trains = Array[PackedScene]([ExtResource("10_5xyti")])
 
 [node name="LeftSpawn" type="Marker3D" parent="Spawner"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -150, 0, -40)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -125, 0, -40)
 
 [node name="RightSpawn" type="Marker3D" parent="Spawner"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 150, 0, -40)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 125, 0, -40)
 
 [node name="SpawnTimer" type="Timer" parent="Spawner"]
 one_shot = true
@@ -68,6 +88,12 @@ one_shot = true
 [node name="Score" type="Node" parent="."]
 unique_name_in_owner = true
 script = ExtResource("9_5xyti")
+
+[node name="Audio" type="Node" parent="."]
+script = ExtResource("12_s758e")
+
+[node name="End" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("13_4hmqs")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 script = ExtResource("3_c651c")
@@ -77,11 +103,15 @@ script = ExtResource("3_c651c")
 [node name="End" parent="CanvasLayer" instance=ExtResource("4_na0o7")]
 visible = false
 
+[node name="Options" parent="CanvasLayer" instance=ExtResource("17_piupu")]
+visible = false
+z_index = 1
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_73k8k")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.965926, -0.224144, -0.12941, 0.258819, 0.836516, 0.482963, 0, -0.5, 0.866025, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 0.258819, 0.965926, 0, -0.965926, 0.258819, 0, 0, 0)
 sky_mode = 1
 
 [node name="Camera3D" type="Camera3D" parent="."]
@@ -95,15 +125,25 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -18, 90)
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 0.406737, 0.913546, 0, -0.913546, 0.406737, 0, 46, 26)
 
-[node name="Cup" parent="." instance=ExtResource("6_na0o7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -26, 0)
-flip_duration = 2.0
+[node name="Cup" parent="." instance=ExtResource("19_vapsy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -24, 0)
+
+[node name="Track" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, -40)
+visible = false
+mesh = SubResource("PlaneMesh_vapsy")
+surface_material_override/0 = SubResource("StandardMaterial3D_jofbb")
+script = ExtResource("21_vapsy")
+
+[node name="Trains" type="Node3D" parent="."]
 
 [connection signal="end_state_entered" from="." to="Bounds/PlayBound" method="_on_main_end_state_entered"]
 [connection signal="end_state_entered" from="." to="Spawner" method="_on_main_end_state_entered"]
+[connection signal="end_state_entered" from="." to="Audio" method="_on_main_end_state_entered"]
 [connection signal="end_state_entered" from="." to="CanvasLayer" method="_on_main_end_state_entered"]
 [connection signal="end_state_entered" from="." to="Camera3D" method="_on_main_end_state_entered"]
 [connection signal="end_state_entered" from="." to="Cup" method="_on_main_end_state_entered"]
+[connection signal="end_state_entered" from="." to="Track" method="_on_main_end_state_entered"]
 [connection signal="play_state_entered" from="." to="Bounds" method="_on_main_play_state_entered"]
 [connection signal="play_state_entered" from="." to="Bounds/PlayBound" method="_on_main_play_state_entered"]
 [connection signal="play_state_entered" from="." to="Spawner" method="_on_main_play_state_entered"]
@@ -111,6 +151,7 @@ flip_duration = 2.0
 [connection signal="play_state_entered" from="." to="CanvasLayer" method="_on_main_play_state_entered"]
 [connection signal="play_state_entered" from="." to="Camera3D" method="_on_main_play_state_entered"]
 [connection signal="play_state_entered" from="." to="Cup" method="_on_main_play_state_entered"]
+[connection signal="play_state_entered" from="." to="Track" method="_on_main_play_state_entered"]
 [connection signal="title_state_entered" from="." to="Camera3D" method="_on_main_title_state_entered"]
 [connection signal="play_bound_entered" from="Bounds" to="." method="_on_bounds_play_bound_entered"]
 [connection signal="play_bound_entered" from="Bounds" to="Score" method="_on_bounds_play_bound_entered"]
@@ -118,5 +159,7 @@ flip_duration = 2.0
 [connection signal="body_entered" from="Bounds/EndBound" to="Bounds" method="_on_end_bound_body_entered"]
 [connection signal="spawned" from="Spawner" to="Score" method="_on_spawner_spawned"]
 [connection signal="timeout" from="Spawner/SpawnTimer" to="Spawner" method="_on_spawn_timer_timeout"]
+[connection signal="options_pressed" from="CanvasLayer/Title" to="CanvasLayer" method="_on_title_options_pressed"]
 [connection signal="start_pressed" from="CanvasLayer/Title" to="." method="_on_title_start_pressed"]
+[connection signal="options_pressed" from="CanvasLayer/End" to="CanvasLayer" method="_on_end_options_pressed"]
 [connection signal="start_pressed" from="CanvasLayer/End" to="." method="_on_end_start_pressed"]

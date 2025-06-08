@@ -1,7 +1,7 @@
 extends Node
 
 
-signal play_bound_entered(train: RigidBody3D)
+signal play_bound_entered(train: TrainBody)
 
 @onready var play_bound := $PlayBound
 @onready var end_bound := $EndBound
