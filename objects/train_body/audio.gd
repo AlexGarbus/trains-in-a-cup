@@ -17,13 +17,18 @@ var max_impact_pitch := 1.1
 
 @onready var train := $".."
 @onready var destroy_timer := $DestroyTimer
+@onready var min_playback_timer := $MinPlaybackTimer
 @onready var impact := $Impact
 
 var _destroy_on_impact_finished := false
 
 
 func _play_impact(body_speed: float) -> void:
-	if body_speed < min_body_speed or body_speed > max_body_speed:
+	if (
+		not min_playback_timer.is_stopped()
+		or body_speed < min_body_speed
+		or body_speed > max_body_speed
+	):
 		return
 	var volume := remap(
 		body_speed,
@@ -35,10 +40,13 @@ func _play_impact(body_speed: float) -> void:
 	impact.volume_db = volume
 	impact.pitch_scale = randf_range(min_impact_pitch, max_impact_pitch)
 	impact.play()
+	min_playback_timer.start()
 
 
 func _on_body_entered(body: Node) -> void:
-	var rigid_body: RigidBody3D = body if body is RigidBody3D else train
+	var rigid_body := body as RigidBody3D
+	if not rigid_body or rigid_body.freeze:
+		rigid_body = train
 	if not rigid_body == train.front_train:
 		_play_impact(rigid_body.linear_velocity.length())
 
