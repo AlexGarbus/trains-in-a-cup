@@ -12,7 +12,7 @@ config_version=5
 
 config/name="Trains in a Cup!"
 run/main_scene="uid://cg0gvfli3gkcy"
-config/features=PackedStringArray("4.4", "Mobile")
+config/features=PackedStringArray("4.5", "Mobile")
 config/icon="uid://t6a2a4hx6rr"
 
 [audio]
