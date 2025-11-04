@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://cm5yfxb40ary5"]
+[gd_scene load_steps=4 format=3 uid="uid://cm5yfxb40ary5"]
 
 [ext_resource type="Script" uid="uid://dqd7bkflsu82a" path="res://user_interface/end/end.gd" id="1_of3xt"]
 [ext_resource type="Theme" uid="uid://cfjmfbcfpkmfa" path="res://user_interface/theme.tres" id="1_r1yrj"]
+[ext_resource type="PackedScene" uid="uid://dgnxqfyy1njwn" path="res://user_interface/leaderboard/leaderboard.tscn" id="3_w2dgq"]
 
 [node name="End" type="Control"]
 layout_mode = 3
@@ -37,7 +38,7 @@ text = "You put %s trains with %s cars in a cup!"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ButtonContainer" type="HBoxContainer" parent="."]
+[node name="Input" type="Control" parent="."]
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
@@ -47,17 +48,84 @@ offset_top = -68.0
 offset_bottom = -15.0
 grow_horizontal = 2
 grow_vertical = 0
+
+[node name="Menu" type="HBoxContainer" parent="Input"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 alignment = 1
 
-[node name="StartButton" type="Button" parent="ButtonContainer"]
+[node name="StartButton" type="Button" parent="Input/Menu"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "Try again!"
 
-[node name="OptionsButton" type="Button" parent="ButtonContainer"]
+[node name="OptionsButton" type="Button" parent="Input/Menu"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "•••"
 
-[connection signal="pressed" from="ButtonContainer/StartButton" to="." method="_on_start_button_pressed"]
-[connection signal="pressed" from="ButtonContainer/OptionsButton" to="." method="_on_options_button_pressed"]
+[node name="NameEntry" type="VBoxContainer" parent="Input"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -53.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 2
+
+[node name="Label" type="Label" parent="Input/NameEntry"]
+layout_mode = 2
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 32
+text = "That's a new record! Enter your name for the leaderboard!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HoxContainer" type="HBoxContainer" parent="Input/NameEntry"]
+layout_mode = 2
+theme_override_constants/separation = 32
+alignment = 1
+
+[node name="LineEdit" type="LineEdit" parent="Input/NameEntry/HoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+placeholder_text = "Enter name here!"
+max_length = 16
+clear_button_enabled = true
+caret_blink = true
+
+[node name="SubmitNameButton" type="Button" parent="Input/NameEntry/HoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Done!"
+
+[node name="LeaderboardPanel" type="Panel" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -100.0
+offset_right = 300.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Leaderboard" parent="LeaderboardPanel" instance=ExtResource("3_w2dgq")]
+unique_name_in_owner = true
+layout_mode = 1
+
+[connection signal="pressed" from="Input/Menu/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="Input/Menu/OptionsButton" to="." method="_on_options_button_pressed"]
+[connection signal="pressed" from="Input/NameEntry/HoxContainer/SubmitNameButton" to="." method="_on_submit_name_button_pressed"]

@@ -1,26 +1,27 @@
-[gd_scene load_steps=28 format=3 uid="uid://cg0gvfli3gkcy"]
+[gd_scene load_steps=29 format=3 uid="uid://cg0gvfli3gkcy"]
 
 [ext_resource type="Script" uid="uid://bgc5wv3f2lkxf" path="res://main/main.gd" id="1_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://c083x5lgy3q8n" path="res://user_interface/title/title.tscn" id="1_ig7tw"]
-[ext_resource type="Script" uid="uid://cmtatktv0o7t4" path="res://main/camera.gd" id="2_xwkvk"]
-[ext_resource type="Script" uid="uid://cc46m1klcw5ea" path="res://main/canvas.gd" id="3_c651c"]
+[ext_resource type="Script" uid="uid://cmtatktv0o7t4" path="res://main/components/camera.gd" id="2_xwkvk"]
+[ext_resource type="Script" uid="uid://cc46m1klcw5ea" path="res://main/components/canvas.gd" id="3_c651c"]
 [ext_resource type="PackedScene" uid="uid://cm5yfxb40ary5" path="res://user_interface/end/end.tscn" id="4_na0o7"]
-[ext_resource type="Script" uid="uid://icdp0caamr63" path="res://main/spawner.gd" id="5_0i4oc"]
+[ext_resource type="Script" uid="uid://icdp0caamr63" path="res://main/components/spawner.gd" id="5_0i4oc"]
 [ext_resource type="PackedScene" uid="uid://bnky8om8f4lf5" path="res://objects/train_body/steam/steam.tscn" id="6_bsumw"]
-[ext_resource type="Script" uid="uid://cj7ad8n1s1i0b" path="res://main/bounds.gd" id="7_73k8k"]
+[ext_resource type="Script" uid="uid://cj7ad8n1s1i0b" path="res://main/components/bounds.gd" id="7_73k8k"]
 [ext_resource type="PackedScene" uid="uid://clgvnnx2n0m6t" path="res://objects/train_body/diesel/diesel.tscn" id="7_fwcvl"]
 [ext_resource type="PackedScene" uid="uid://bfdxweus14fua" path="res://objects/train_body/flat/flat.tscn" id="8_n3o0a"]
 [ext_resource type="PackedScene" uid="uid://dj8jdq5wy150e" path="res://objects/train_body/box/box.tscn" id="8_na0o7"]
-[ext_resource type="Script" uid="uid://03msrpsawifo" path="res://main/score.gd" id="9_5xyti"]
+[ext_resource type="Script" uid="uid://03msrpsawifo" path="res://main/components/score.gd" id="9_5xyti"]
 [ext_resource type="PackedScene" uid="uid://w4v48vn0djtx" path="res://objects/train_body/tank/tank.tscn" id="9_73k8k"]
 [ext_resource type="PackedScene" uid="uid://b6iih2v1ghf2x" path="res://objects/train_body/hopper/hopper.tscn" id="9_s758e"]
 [ext_resource type="PackedScene" uid="uid://blsmhbej5v6so" path="res://objects/train_body/caboose/caboose.tscn" id="10_5xyti"]
-[ext_resource type="Script" uid="uid://c457qc42xdeje" path="res://main/audio.gd" id="12_s758e"]
+[ext_resource type="Script" uid="uid://c457qc42xdeje" path="res://main/components/audio.gd" id="12_s758e"]
 [ext_resource type="AudioStream" uid="uid://ci1w0iteoyge1" path="res://main/assets/buzzer.wav" id="13_4hmqs"]
+[ext_resource type="Script" uid="uid://d3u7ghqr67ea4" path="res://main/components/read_write.gd" id="14_jofbb"]
 [ext_resource type="PackedScene" uid="uid://bo38xlvnah2jr" path="res://user_interface/options/options.tscn" id="17_piupu"]
 [ext_resource type="PackedScene" uid="uid://dbxg3mleno7hh" path="res://objects/cup/cup.tscn" id="19_vapsy"]
 [ext_resource type="Texture2D" uid="uid://v7lc4u046kwd" path="res://main/assets/track.png" id="20_q0sk7"]
-[ext_resource type="Script" uid="uid://b274hjayhan7j" path="res://main/track.gd" id="21_vapsy"]
+[ext_resource type="Script" uid="uid://b274hjayhan7j" path="res://main/components/track.gd" id="21_vapsy"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_bsumw"]
 
@@ -86,7 +87,6 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 125, 0
 one_shot = true
 
 [node name="Score" type="Node" parent="."]
-unique_name_in_owner = true
 script = ExtResource("9_5xyti")
 
 [node name="Audio" type="Node" parent="."]
@@ -94,6 +94,9 @@ script = ExtResource("12_s758e")
 
 [node name="End" type="AudioStreamPlayer" parent="Audio"]
 stream = ExtResource("13_4hmqs")
+
+[node name="ReadWrite" type="Node" parent="."]
+script = ExtResource("14_jofbb")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 script = ExtResource("3_c651c")
@@ -140,7 +143,6 @@ script = ExtResource("21_vapsy")
 [connection signal="end_state_entered" from="." to="Bounds/PlayBound" method="_on_main_end_state_entered"]
 [connection signal="end_state_entered" from="." to="Spawner" method="_on_main_end_state_entered"]
 [connection signal="end_state_entered" from="." to="Audio" method="_on_main_end_state_entered"]
-[connection signal="end_state_entered" from="." to="CanvasLayer" method="_on_main_end_state_entered"]
 [connection signal="end_state_entered" from="." to="Camera3D" method="_on_main_end_state_entered"]
 [connection signal="end_state_entered" from="." to="Cup" method="_on_main_end_state_entered"]
 [connection signal="end_state_entered" from="." to="Track" method="_on_main_end_state_entered"]
@@ -159,7 +161,13 @@ script = ExtResource("21_vapsy")
 [connection signal="body_entered" from="Bounds/EndBound" to="Bounds" method="_on_end_bound_body_entered"]
 [connection signal="spawned" from="Spawner" to="Score" method="_on_spawner_spawned"]
 [connection signal="timeout" from="Spawner/SpawnTimer" to="Spawner" method="_on_spawn_timer_timeout"]
+[connection signal="finalized" from="Score" to="ReadWrite" method="_on_score_finalized"]
+[connection signal="finalized" from="Score" to="CanvasLayer" method="_on_score_finalized"]
+[connection signal="data_loaded" from="ReadWrite" to="CanvasLayer" method="_on_read_write_data_loaded"]
+[connection signal="data_saved" from="ReadWrite" to="CanvasLayer" method="_on_read_write_data_saved"]
+[connection signal="data_updated" from="ReadWrite" to="CanvasLayer/End" method="_on_read_write_data_updated"]
 [connection signal="options_pressed" from="CanvasLayer/Title" to="CanvasLayer" method="_on_title_options_pressed"]
 [connection signal="start_pressed" from="CanvasLayer/Title" to="." method="_on_title_start_pressed"]
+[connection signal="name_submitted" from="CanvasLayer/End" to="ReadWrite" method="_on_end_name_submitted"]
 [connection signal="options_pressed" from="CanvasLayer/End" to="CanvasLayer" method="_on_end_options_pressed"]
 [connection signal="start_pressed" from="CanvasLayer/End" to="." method="_on_end_start_pressed"]

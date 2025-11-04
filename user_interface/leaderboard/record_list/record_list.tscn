@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://bqox3yyy82146"]
+
+[ext_resource type="Script" uid="uid://rvtdh7eurl1j" path="res://user_interface/leaderboard/record_list/record_list.gd" id="1_rnmoo"]
+
+[node name="RecordList" type="Label"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_type_variation = &"OptionsLabel"
+text = "1) 100 - NAME
+2) 100 - NAME
+3) 100 - NAME
+4) 100 - NAME
+5) 100 - NAME"
+script = ExtResource("1_rnmoo")

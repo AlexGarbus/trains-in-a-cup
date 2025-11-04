@@ -1,0 +1,43 @@
+[gd_scene load_steps=3 format=3 uid="uid://dgnxqfyy1njwn"]
+
+[ext_resource type="Script" uid="uid://cyf4bjnehr0ui" path="res://user_interface/leaderboard/leaderboard.gd" id="1_rnmoo"]
+[ext_resource type="PackedScene" uid="uid://bqox3yyy82146" path="res://user_interface/leaderboard/record_list/record_list.tscn" id="2_vlchk"]
+
+[node name="Leaderboard" type="HBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+script = ExtResource("1_rnmoo")
+
+[node name="Individual" type="VBoxContainer" parent="."]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="Individual"]
+layout_mode = 2
+theme_type_variation = &"OptionsLabel"
+theme_override_font_sizes/font_size = 24
+text = "Most trains in a cup!"
+horizontal_alignment = 1
+
+[node name="ChainList" parent="Individual" instance=ExtResource("2_vlchk")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Chain" type="VBoxContainer" parent="."]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="Chain"]
+layout_mode = 2
+theme_type_variation = &"OptionsLabel"
+theme_override_font_sizes/font_size = 24
+text = "Most train cars in a cup!"
+horizontal_alignment = 1
+
+[node name="IndividualList" parent="Chain" instance=ExtResource("2_vlchk")]
+unique_name_in_owner = true
+layout_mode = 2
