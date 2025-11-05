@@ -69,7 +69,7 @@ func write_log(record: ScoreRecord, suffix: String) -> void:
 
 
 func _is_awaiting_name() -> bool:
-	return _chain_await_name_index > -1 || _individual_await_name_index > -1
+	return _chain_await_name_index > -1 or _individual_await_name_index > -1
 
 
 func _on_score_finalized(chain_count: int, individual_count: int) -> void:
