@@ -38,6 +38,6 @@ func _on_end_start_pressed() -> void:
 		_delete_all_trains()
 
 
-func _on_bounds_play_bound_entered(train: RigidBody3D) -> void:
+func _on_bounds_play_bound_entered(_train: RigidBody3D) -> void:
 	if game_state == GameState.PLAY:
 		game_state = GameState.END

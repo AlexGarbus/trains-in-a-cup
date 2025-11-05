@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=15 format=3 uid="uid://cfjmfbcfpkmfa"]
+[gd_resource type="Theme" load_steps=18 format=3 uid="uid://cfjmfbcfpkmfa"]
 
 [ext_resource type="FontFile" uid="uid://cnw5hwclw1nyb" path="res://user_interface/RacingSansOne-Regular.ttf" id="1_3ohsl"]
 
@@ -114,6 +114,22 @@ expand_margin_right = 8.0
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pxoxi"]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ctdt3"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u07k7"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 45
+corner_radius_top_right = 45
+corner_radius_bottom_right = 45
+corner_radius_bottom_left = 45
+expand_margin_left = 16.0
+expand_margin_right = 16.0
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_64tpl"]
 bg_color = Color(0.592157, 0.607843, 0.615686, 1)
 border_width_left = 3
@@ -132,6 +148,20 @@ expand_margin_bottom = 3.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fmg31"]
 bg_color = Color(0.592157, 0.607843, 0.615686, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 45
+corner_radius_top_right = 45
+corner_radius_bottom_right = 45
+corner_radius_bottom_left = 45
+expand_margin_left = 8.0
+expand_margin_right = 8.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8rpdn"]
+bg_color = Color(1, 1, 1, 1)
 border_width_left = 3
 border_width_top = 3
 border_width_right = 3
@@ -165,9 +195,19 @@ HBoxContainer/constants/separation = 24
 HSeparator/styles/separator = SubResource("StyleBoxEmpty_pxoxi")
 Label/constants/outline_size = 15
 Label/fonts/font = ExtResource("1_3ohsl")
+LineEdit/colors/caret_color = Color(0, 0, 0, 1)
+LineEdit/colors/clear_button_color = Color(0, 0, 0, 1)
+LineEdit/colors/clear_button_color_pressed = Color(0.5882353, 0.5882353, 0.5882353, 1)
+LineEdit/colors/font_color = Color(0, 0, 0, 1)
+LineEdit/colors/font_placeholder_color = Color(0.58909494, 0.589096, 0.5890952, 1)
+LineEdit/constants/minimum_character_width = 15
+LineEdit/fonts/font = ExtResource("1_3ohsl")
+LineEdit/styles/focus = SubResource("StyleBoxEmpty_ctdt3")
+LineEdit/styles/normal = SubResource("StyleBoxFlat_u07k7")
 OptionsButton/base_type = &"Button"
 OptionsButton/styles/hover = SubResource("StyleBoxFlat_64tpl")
 OptionsButton/styles/normal = SubResource("StyleBoxFlat_fmg31")
 OptionsLabel/base_type = &"Label"
 OptionsLabel/colors/font_color = Color(0, 0, 0, 1)
 OptionsLabel/constants/outline_size = 0
+Panel/styles/panel = SubResource("StyleBoxFlat_8rpdn")

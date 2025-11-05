@@ -33,11 +33,11 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func _integrate_forces(body_state: PhysicsDirectBodyState3D) -> void:
 	if state == State.DRAG:
-		var position := body_state.transform.origin.move_toward(
+		var origin := body_state.transform.origin.move_toward(
 			_drag_position,
 			drag_speed * body_state.step
 		)
-		body_state.transform.origin = position
+		body_state.transform.origin = origin
 
 
 func set_freeze(value: bool) -> void:
@@ -131,8 +131,8 @@ func _mouse_to_world_position(mouse_position: Vector2) -> Vector3:
 	return intersect_position + Vector3.UP * global_position.y
 
 
-func _on_input_event(camera: Node, event: InputEvent, event_position: Vector3,
-	normal: Vector3, shape_idx: int
+func _on_input_event(_camera: Node, event: InputEvent, _event_position: Vector3,
+	_normal: Vector3, _shape_idx: int
 ) -> void:
 	if event is InputEventMouseButton and event.is_pressed() and state == State.WAIT:
 		_enter_drag_state(event.position)
