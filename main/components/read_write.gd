@@ -29,6 +29,11 @@ func _ready() -> void:
 		write_data()
 
 
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_PREDELETE:
+		current_data.free()
+
+
 func read_data() -> void:
 	var file := FileAccess.open(USER_DATA_PATH, FileAccess.READ)
 	var error := FileAccess.get_open_error()

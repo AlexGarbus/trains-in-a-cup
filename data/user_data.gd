@@ -9,6 +9,12 @@ var chain_records: Array[ScoreRecord]
 var individual_records: Array[ScoreRecord]
 
 
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_PREDELETE:
+		for record in chain_records + individual_records:
+			record.free()
+
+
 func initialize_all_records() -> void:
 	initialize_records(chain_records)
 	initialize_records(individual_records)
