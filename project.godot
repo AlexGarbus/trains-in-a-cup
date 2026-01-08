@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Trains in a Cup!"
-config/version="2"
+config/version="3"
 run/main_scene="uid://cg0gvfli3gkcy"
 config/features=PackedStringArray("4.5", "Mobile")
 config/icon="uid://t6a2a4hx6rr"
